@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <v-container>
+      <v-row justify="center">
+        <v-btn v-if="!logined" @click="Login()">Login on</v-btn>
+        <div v-else>
+          <p>{{ user }}</p>
+        </div>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+// import firebase from "firebase";
+import { signin } from "@/api/signin.js";
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  data() {
+    return {
+      logined: false,
+      user: ""
+    };
+  },
+  components: {},
+  methods: {
+    async Login() {
+      let vm = this;
+      let log = await signin();
+      console.log(log.user.email);
+      let email = log.user.email;
+      if (email) {
+        vm.logined = true;
+        vm.user = email;
+      }
+    }
   }
 };
 </script>
