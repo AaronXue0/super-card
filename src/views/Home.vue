@@ -1,22 +1,26 @@
 <template>
   <div class="home">
-    <v-card shaped elevatio="0" color="secondary" dark>
-      <v-card-title>學權議題</v-card-title>
-      <v-card-text>
-        為自己的學權發聲。也聆聽他人的聲音
-        <br />學權的路上，或許有人與你的立場不同，但我們可以選擇沈默與尊重。
-        <br />而為論如何，如果你認同他的論點就給予他一隻筆吧！
-      </v-card-text>
-      <v-card-actions>
-        <v-btn icon color="secondary" @click="switchIcon()">
-          <v-icon color="white">{{ speechIcon1 }}</v-icon>
-        </v-btn>
-        <v-icon color="white" class="lr-arrow">mdi-arrange-send-to-back</v-icon>
-        <v-btn icon color="secondary" @click="switchIcon()">
-          <v-icon color="white">{{ speechIcon2 }}</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+    <v-container class="caption-container">
+      <v-card shaped elevatio="0" color="secondary" dark>
+        <v-card-title>學權議題</v-card-title>
+        <v-card-text>
+          為自己的學權發聲。也聆聽他人的聲音
+          <br />學權的路上，或許有人與你的立場不同，但我們可以選擇沈默與尊重。
+          <br />而為論如何，如果你認同他的論點就給予他一隻筆吧！
+        </v-card-text>
+        <v-card-actions>
+          <v-btn icon color="secondary" @click="switchIcon()">
+            <v-icon color="white">{{ speechIcon1 }}</v-icon>
+          </v-btn>
+          <v-spacer />
+          <v-icon color="white" class="lr-arrow">mdi-swap-vertical</v-icon>
+          <v-spacer />
+          <v-btn icon color="secondary" @click="switchIcon()">
+            <v-icon color="white">{{ speechIcon2 }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-container>
     <v-container>
       <card />
     </v-container>
@@ -58,11 +62,11 @@ export default {
 </script>
 
 <style>
-.email-flot {
+.caption-container {
   position: relative;
-  float: right;
+  z-index: 5;
 }
 .lr-arrow {
-  transform: rotate(-45deg);
+  transform: rotate(-90deg);
 }
 </style>
