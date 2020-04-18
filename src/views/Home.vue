@@ -2,9 +2,9 @@
   <div class="home">
     <v-container>
       <v-row justify="center">
-        <v-btn v-if="!logined" @click="Login()">Login on</v-btn>
+        <v-btn v-if="login == false" @click="Login()">Login on</v-btn>
         <div v-else>
-          <p>{{ user }}</p>
+          <p>{{ getUser.email }}</p>
         </div>
       </v-row>
     </v-container>
@@ -12,28 +12,35 @@
 </template>
 
 <script>
-// import firebase from "firebase";
-import { signin } from "@/api/signin.js";
 export default {
   name: "Home",
   data() {
-    return {
-      logined: false,
-      user: ""
-    };
+    return {};
   },
   components: {},
   methods: {
-    async Login() {
+    Login() {
       let vm = this;
-      let log = await signin();
-      console.log(log.user.email);
-      let email = log.user.email;
-      if (email) {
+      vm.$store.dispatch("userSignIn");
+    },
+    testLogin() {
+      let vm = this;
+      vm.user = this.loginState;
+      if (vm.user != null) {
         vm.logined = true;
-        vm.user = email;
       }
     }
+  },
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    },
+    login() {
+      return this.$store.state.login;
+    }
+  },
+  mounted() {
+    this.testLogin();
   }
 };
 </script>

@@ -12,7 +12,7 @@ export async function signin() {
     .auth()
     .signInWithPopup(provider)
     .then(function(result) {
-      return result;
+      this.$store.dispatch("setLogin", result);
     })
     .catch(function(error) {
       return error;
