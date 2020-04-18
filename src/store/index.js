@@ -17,10 +17,8 @@ export default new Vuex.Store({
     },
     setError(state, payload) {
       state.error = payload;
-      console.log(payload);
     },
     setLogin(state, payload) {
-      console.log(1);
       state.login = payload;
     }
   },
@@ -31,7 +29,6 @@ export default new Vuex.Store({
     autoSignIn({ commit }, payload) {
       commit("setUser", payload);
       commit("setLogin", true);
-      console.log(1);
     },
     setLogin(result) {
       this.$store.commit("setUser", result);
