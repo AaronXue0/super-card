@@ -4,6 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import { signin } from "@/api/signin.js";
+import { signout } from "@/api/signout.js";
 import { retriveCards } from "@/api/retriveCards.js";
 // import firebase from "firebase";
 
@@ -43,6 +44,10 @@ export default new Vuex.Store({
     },
     setCardsAction() {
       retriveCards();
+    },
+    userSignOut({ commit }) {
+      signout();
+      commit("setUser", null);
     }
   },
   getters: {}

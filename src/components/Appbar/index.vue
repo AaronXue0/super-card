@@ -11,22 +11,34 @@
         >mdi-crop-free
       </v-icon>
     </v-btn>
+    <logout :dialog="dialog" v-on:cancel-dialog="cancelDialog" />
   </v-app-bar>
 </template>
 
 <script>
+import logout from "@/components/Appbar/logout.vue";
 export default {
   data() {
-    return {};
+    return {
+      dialog: false
+    };
   },
   methods: {
     Login() {
       let vm = this;
-      if (vm.getUser) return;
+      if (vm.getUser) {
+        vm.dialog = true;
+        return;
+      }
       vm.$store.dispatch("userSignIn");
+    },
+    cancelDialog() {
+      this.dialog = false;
     }
   },
-  components: {},
+  components: {
+    logout
+  },
   computed: {
     getUser() {
       return this.$store.state.user;
