@@ -1,20 +1,18 @@
 <template>
   <v-card shaped elevatio="0" color="secondary" dark>
-    <v-card-title>{{ cardTitle }}</v-card-title>
+    <v-card-title>{{ cardInfo.id }}</v-card-title>
     <v-card-text class="white black--text">
       <br />
       <span>
-        Content
-        <!-- {{ cardInfo.content }} -->
+        {{ cardInfo.data.content }}
       </span>
     </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">
         <v-icon v-if="!clicked" color="white">mdi-message</v-icon>
-        <v-icon v-else color="white">mdi-message-draw</v-icon>
+        <v-icon v-else color="primary">mdi-message-draw</v-icon>
       </v-btn>
-      <!-- <span>{{ cardInfo.likes }}</span> -->
-      <span>0</span>
+      <span>{{ cardInfo.data.likes }}</span>
     </v-card-actions>
   </v-card>
 </template>

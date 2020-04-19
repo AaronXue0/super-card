@@ -30,15 +30,14 @@
         </v-card-actions>
       </v-card>
     </v-container>
-    <v-container>
-      <card />
+    <v-container v-for="(item, index) in getCards" :key="index">
+      <card :cardInfo="item" />
     </v-container>
   </div>
 </template>
 
 <script>
 import card from "@/components/Card/card.vue";
-import { getCards } from "@/api/getCards.js";
 export default {
   name: "Home",
   data() {
@@ -51,8 +50,8 @@ export default {
     card
   },
   methods: {
-    testCard() {
-      getCards();
+    setDefaultCards() {
+      this.$store.dispatch("setCardsAction");
     },
     switchIcon() {
       let vm = this;
@@ -68,10 +67,13 @@ export default {
     },
     login() {
       return this.$store.state.login;
+    },
+    getCards() {
+      return this.$store.state.cards;
     }
   },
   mounted() {
-    this.testCard();
+    this.setDefaultCards();
   }
 };
 </script>

@@ -4,12 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import { signin } from "@/api/signin.js";
+import { retriveCards } from "@/api/retriveCards.js";
+// import firebase from "firebase";
 
 export default new Vuex.Store({
   state: {
     user: null,
     error: null,
-    login: false
+    login: false,
+    cards: null
   },
   mutations: {
     setUser(state, payload) {
@@ -20,6 +23,9 @@ export default new Vuex.Store({
     },
     setLogin(state, payload) {
       state.login = payload;
+    },
+    setCards(state, payload) {
+      state.cards = payload;
     }
   },
   actions: {
@@ -34,6 +40,9 @@ export default new Vuex.Store({
       this.$store.commit("setUser", result);
       this.$store.commit("setLogin", true);
       this.$store.commit("setError", null);
+    },
+    setCardsAction() {
+      retriveCards();
     }
   },
   getters: {}
