@@ -5,6 +5,7 @@
     </v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <span class="noto-font" v-if="getUser">{{ getUser.displayName }}</span>
+    <span class="noto-font" v-else>Sign In</span>
     <v-btn icon color="white" @click="Login()">
       <v-icon large class="custom-starry-icon-left" color="secondary"
         >mdi-crop-free

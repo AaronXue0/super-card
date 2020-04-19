@@ -5,6 +5,7 @@
       <br />
       <span>
         Content
+        <!-- {{ cardInfo.content }} -->
       </span>
     </v-card-text>
     <v-card-actions class="priCard">
@@ -12,6 +13,8 @@
         <v-icon v-if="!clicked" color="white">mdi-message</v-icon>
         <v-icon v-else color="white">mdi-message-draw</v-icon>
       </v-btn>
+      <!-- <span>{{ cardInfo.likes }}</span> -->
+      <span>0</span>
     </v-card-actions>
   </v-card>
 </template>
@@ -19,6 +22,7 @@
 <script>
 export default {
   name: "card",
+  props: ["cardInfo"],
   data() {
     return {
       cardTitle: "Title",
