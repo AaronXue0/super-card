@@ -2,8 +2,8 @@
   <v-card shaped elevatio="0" color="secondary" dark>
     <v-card-title>{{ cardTitle }}</v-card-title>
     <v-card-text>{{ cardText }}</v-card-text>
-    <v-card-actions>
-      <v-btn icon @click="clickLike" color="secondary">
+    <v-card-actions class="priCard">
+      <v-btn icon @click="clickLike" color="priCard">
         <v-icon v-if="!clicked" color="white">mdi-message</v-icon>
         <v-icon v-else color="white">mdi-message-draw</v-icon>
       </v-btn>
