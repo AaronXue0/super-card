@@ -1,20 +1,31 @@
 <template>
   <div class="post">
-    <v-btn color="white" fab>
+    <v-btn color="white" fab @click="dialog = true">
       <v-icon color="priCard">
         mdi-message-text
       </v-icon>
     </v-btn>
+    <card :dialog="dialog" v-on:cancel-dialog="cancelDialog" />
   </div>
 </template>
 
 <script>
+import card from "@/components/Post/postCard.vue";
+
 export default {
   data() {
-    return {};
+    return {
+      dialog: true
+    };
   },
-  components: {},
-  methods: {},
+  components: {
+    card
+  },
+  methods: {
+    cancelDialog() {
+      this.dialog = false;
+    }
+  },
   computed: {},
   mounted() {}
 };
