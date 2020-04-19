@@ -1,7 +1,12 @@
 <template>
   <v-card shaped elevatio="0" color="secondary" dark>
     <v-card-title>{{ cardTitle }}</v-card-title>
-    <v-card-text>{{ cardText }}</v-card-text>
+    <v-card-text class="white black--text">
+      <br />
+      <span>
+        Content
+      </span>
+    </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">
         <v-icon v-if="!clicked" color="white">mdi-message</v-icon>

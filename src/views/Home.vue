@@ -2,13 +2,13 @@
   <div class="home">
     <v-container>
       <v-card shaped elevatio="0" color="secondary" dark elevation="1">
-        <v-card-title>學權議題</v-card-title>
+        <v-card-title>學權筆記</v-card-title>
         <v-card-text class="white black--text">
           <br />
           <span>
             為自己的學權發聲。也聆聽他人的聲音
-            <br />學權的路上，或許有人與你的立場不同，但我們可以選擇沈默與尊重。
-            <br />而為論如何，如果你認同他的論點就給予他一隻筆吧！
+            <br />學權的路上，或許有人與你的立場不同，但我們可以選擇沈默與尊重，他的言論就會是空白的。
+            <br />但相反的，如果你認同他的論點就給予他一隻筆吧！
           </span>
         </v-card-text>
         <v-card-actions class="priCard">
