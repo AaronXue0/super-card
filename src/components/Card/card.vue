@@ -3,9 +3,7 @@
     <v-card-title>{{ cardInfo.id }}</v-card-title>
     <v-card-text class="white black--text">
       <br />
-      <span>
-        {{ cardInfo.data.content }}
-      </span>
+      <span>{{ cardInfo.data.content }}</span>
     </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">
@@ -18,6 +16,7 @@
 </template>
 
 <script>
+import { writeCard } from "@/api/writeCard.js";
 export default {
   name: "card",
   props: ["cardInfo"],
@@ -33,6 +32,18 @@ export default {
     clickLike() {
       let vm = this;
       vm.clicked = !vm.clicked;
+      if (vm.clicked) writeCard(1, vm.cardInfo, this.$store.state.user);
+      else writeCard(-1, vm.cardInfo, this.$store.state.user);
+    },
+    likedDetect() {
+      let vm = this;
+      let id = this.$store.state.user.uid;
+      let obj = Object.keys(vm.cardInfo.data);
+      obj.forEach(element => {
+        if (element === id) {
+          vm.clicked = true;
+        }
+      });
     }
   },
   computed: {
@@ -43,7 +54,9 @@ export default {
       return this.$store.state.login;
     }
   },
-  mounted() {}
+  mounted() {
+    this.likedDetect();
+  }
 };
 </script>
 
