@@ -10,9 +10,7 @@ export function signin() {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then(function(result) {
-      this.$store.dispatch("setLogin", result);
-    })
+    .then()
     .catch(function(error) {
       return error;
     });

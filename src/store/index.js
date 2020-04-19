@@ -37,17 +37,13 @@ export default new Vuex.Store({
       commit("setUser", payload);
       commit("setLogin", true);
     },
-    setLogin(result) {
-      this.$store.commit("setUser", result);
-      this.$store.commit("setLogin", true);
-      this.$store.commit("setError", null);
-    },
     setCardsAction() {
       retriveCards();
     },
     userSignOut({ commit }) {
       signout();
       commit("setUser", null);
+      location.reload();
     }
   },
   getters: {}
