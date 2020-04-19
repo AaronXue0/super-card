@@ -17,6 +17,7 @@
 
 <script>
 import logout from "@/components/Appbar/logout.vue";
+
 export default {
   data() {
     return {
