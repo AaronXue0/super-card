@@ -36,6 +36,6 @@ export default {
   position: fixed;
   right: 5%;
   z-index: 99;
-  bottom: 1%;
+  bottom: 3.5%;
 }
 </style>
