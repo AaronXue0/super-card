@@ -4,6 +4,8 @@
     <v-card-text class="white black--text">
       <br />
       <span>{{ cardInfo.data.content }}</span>
+      <hr />
+      <small>Posy by: {{ cardInfo.data.postBy }}</small>
     </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">

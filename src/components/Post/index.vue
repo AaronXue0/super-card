@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <v-btn color="white" fab @click="dialog = true">
+    <v-btn color="white" fab @click="dialog = true" small>
       <v-icon color="priCard">
         mdi-message-text
       </v-icon>
@@ -15,7 +15,7 @@ import card from "@/components/Post/postCard.vue";
 export default {
   data() {
     return {
-      dialog: true
+      dialog: false
     };
   },
   components: {
@@ -36,6 +36,6 @@ export default {
   position: fixed;
   right: 5%;
   z-index: 99;
-  bottom: 5%;
+  bottom: 1%;
 }
 </style>

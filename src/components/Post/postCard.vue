@@ -2,48 +2,56 @@
   <v-dialog v-model="dialog" persistent>
     <v-card>
       <v-card-title>
-        <span class="headline">學權日記</span>
+        <span class="headline">議題卡片</span>
       </v-card-title>
 
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="12">
+        <v-text-field label="標題" messages v-model="title"></v-text-field>
         <v-textarea
-          solo
-          outlined
-          flat
-          name="input-7-4"
-          label="Solo textarea"
-        ></v-textarea>
-        <v-textarea
-          solo
-          outlined
-          flat
-          name="input-7-4"
-          label="Solo textarea"
+          clearable
+          clear-icon="mdi-close"
+          label="文章內容"
+          messages
+          v-model="content"
         ></v-textarea>
       </v-col>
-      <small>*indicates required field</small>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="cancel">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="cancel">Save</v-btn>
+        <v-btn color="blue darken-1" text @click="post">Post</v-btn>
+        <v-btn color="blue darken-1" text @click="close">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import { postNewCard } from "@/api/postNewCard.js";
 export default {
   data() {
-    return {};
+    return {
+      title: "",
+      content: ""
+    };
   },
   props: ["dialog"],
   components: {},
   methods: {
-    cancel() {
-      this.$emit("cancel-dialog", false);
+    post() {
+      let vm = this;
+      postNewCard(vm.title, vm.content, vm.getUser.email);
+      this.$emit("cancel-dialog");
+      vm.title = "";
+      vm.content = "";
+    },
+    close() {
+      this.$emit("cancel-dialog");
     }
   },
-  computed: {},
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    }
+  },
   mounted() {}
 };
 </script>
