@@ -1,7 +1,7 @@
 <template>
   <div class="post">
-    <v-btn color="white" fab @click="dialog = true" small>
-      <v-icon color="priCard">
+    <v-btn color="secondary" @click="dialog = true" x-small fab elevation="0">
+      <v-icon color="primary">
         mdi-message-text
       </v-icon>
     </v-btn>
@@ -31,11 +31,4 @@ export default {
 };
 </script>
 
-<style>
-.post {
-  position: fixed;
-  right: 5%;
-  z-index: 99;
-  bottom: 3.5%;
-}
-</style>
+<style></style>
