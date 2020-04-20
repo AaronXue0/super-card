@@ -1,16 +1,13 @@
 <template>
   <v-app-bar color="white" app fixed elevation="0">
-    <v-app-bar-nav-icon color="white"
-      ><v-icon color="secondary"> mdi-menu</v-icon>
-    </v-app-bar-nav-icon>
-    <drawer />
+    <v-app-bar-nav-icon color="black" @click="openDrawer"> </v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <span class="noto-font" v-if="getUser">{{ getUser.displayName }}</span>
     <span class="noto-font" v-else>Sign In</span>
     <v-btn icon color="white" @click="Login()">
       <v-icon large class="custom-starry-icon-left" color="secondary"
-        >mdi-crop-free
-      </v-icon>
+        >mdi-crop-free</v-icon
+      >
     </v-btn>
     <logout :dialog="dialog" v-on:cancel-dialog="cancelDialog" />
   </v-app-bar>
@@ -18,7 +15,6 @@
 
 <script>
 import logout from "@/components/Appbar/logout.vue";
-import drawer from "@/components/Appbar/drawer.vue";
 
 export default {
   data() {
@@ -36,12 +32,15 @@ export default {
       vm.$store.dispatch("userSignIn");
     },
     cancelDialog() {
-      this.dialog = false;
+      let vm = this;
+      vm.dialog = false;
+    },
+    openDrawer() {
+      this.$emit("open-drawer");
     }
   },
   components: {
-    logout,
-    drawer
+    logout
   },
   computed: {
     getUser() {
