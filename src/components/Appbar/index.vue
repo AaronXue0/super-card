@@ -3,6 +3,7 @@
     <v-app-bar-nav-icon color="white"
       ><v-icon color="secondary"> mdi-menu</v-icon>
     </v-app-bar-nav-icon>
+    <drawer />
     <v-spacer></v-spacer>
     <span class="noto-font" v-if="getUser">{{ getUser.displayName }}</span>
     <span class="noto-font" v-else>Sign In</span>
@@ -17,6 +18,7 @@
 
 <script>
 import logout from "@/components/Appbar/logout.vue";
+import drawer from "@/components/Appbar/drawer.vue";
 
 export default {
   data() {
@@ -38,7 +40,8 @@ export default {
     }
   },
   components: {
-    logout
+    logout,
+    drawer
   },
   computed: {
     getUser() {
