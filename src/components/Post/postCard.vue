@@ -6,7 +6,12 @@
       </v-card-title>
 
       <v-col cols="12" md="12">
-        <v-text-field label="標題" messages v-model="title"></v-text-field>
+        <v-text-field
+          label="標題"
+          messages
+          v-model="title"
+          clearable
+        ></v-text-field>
         <v-textarea
           clearable
           clear-icon="mdi-close"
