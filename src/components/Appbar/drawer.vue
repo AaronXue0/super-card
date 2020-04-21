@@ -21,7 +21,7 @@
       </v-btn>
     </v-list-item>
     <v-list-item-group v-if="getUser">
-      <v-list-item> </v-list-item>
+      <v-list-item></v-list-item>
       <v-list-item>
         <h1 class="white--text">
           <v-avatar color="white">
@@ -36,11 +36,22 @@
       <v-list-item>
         <v-divider class="white"></v-divider>
       </v-list-item>
+      <v-list-item>
+        <h2 class="white--text">發文規則</h2>
+      </v-list-item>
+      <v-list-item v-for="(item, index) in rule" :key="index">
+        <p class="white--text text-xs-right">
+          <br />
+          {{ item.index }}
+          <br />
+        </p>
+      </v-list-item>
+      <v-list-item>
+        <v-divider class="white"></v-divider>
+      </v-list-item>
       <v-list-item class="div-icon">
         <div v-for="(item, index) in icons" :key="index">
-          <v-icon x-large color="white">
-            {{ item.icon }}
-          </v-icon>
+          <v-icon x-large color="white">{{ item.icon }}</v-icon>
         </div>
       </v-list-item>
     </v-list-item-group>
@@ -55,6 +66,17 @@ export default {
         { icon: "mdi-facebook" },
         { icon: "mdi-instagram" },
         { icon: "mdi-youtube" }
+      ],
+      rule: [
+        {
+          index: "一天最多五則貼文"
+        },
+        {
+          index: "發文規則同北科全體版，違者將刪除貼文"
+        },
+        {
+          index: "情節嚴重且多次屢犯，封鎖該使用者帳號"
+        }
       ]
     };
   },

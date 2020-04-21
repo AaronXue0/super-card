@@ -11,7 +11,7 @@
             elevation="1"
             max-width="1000"
           >
-            <v-card-title>學權超人</v-card-title>
+            <v-card-title>學權超人筆記本</v-card-title>
             <v-card-text class="white black--text">
               <br />
               <span>
