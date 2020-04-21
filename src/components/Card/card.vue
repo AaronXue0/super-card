@@ -12,8 +12,8 @@
     </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">
-        <v-icon v-if="!clicked" color="white">mdi-message</v-icon>
-        <v-icon v-else color="primary">mdi-message-draw</v-icon>
+        <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
+        <v-icon v-else color="error">{{ iconSupport }}</v-icon>
       </v-btn>
       <span>{{ cardInfo.data.likes }}</span>
     </v-card-actions>
@@ -27,6 +27,8 @@ export default {
   props: ["cardInfo"],
   data() {
     return {
+      iconDefault: "mdi-heart-outline",
+      iconSupport: "mdi-heart",
       cardTitle: "Title",
       cardText: "Content",
       clicked: false

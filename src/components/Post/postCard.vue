@@ -11,12 +11,20 @@
           messages
           v-model="title"
           clearable
+          hint="必填"
+          persistent-hint
+          :rules="[rules.maxTitle, rules.required]"
+          counter="30"
         ></v-text-field>
         <v-textarea
           clearable
           clear-icon="mdi-close"
           label="文章內容"
           messages
+          hint="必填"
+          persistent-hint
+          counter="150"
+          :rules="[rules.maxContent, rules.required]"
           v-model="content"
         ></v-textarea>
       </v-col>
@@ -35,7 +43,12 @@ export default {
   data() {
     return {
       title: "",
-      content: ""
+      content: "",
+      rules: {
+        required: v => !!v || "必填",
+        maxTitle: v => (v || "").length <= 30 || "文章內容必須小於150個字",
+        maxContent: v => (v || "").length <= 150 || "文章內容必須小於150個字"
+      }
     };
   },
   props: ["dialog"],
