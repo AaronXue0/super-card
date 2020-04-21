@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       icons: [
-        { icon: "mdi-home", href: "" },
         { icon: "mdi-facebook", href: "" },
-        { icon: "mdi-instagram", href: "" }
+        { icon: "mdi-instagram", href: "" },
+        { icon: "mdi-youtube", href: "" }
       ]
     };
   },

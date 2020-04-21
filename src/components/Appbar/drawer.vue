@@ -2,24 +2,61 @@
   <v-navigation-drawer
     v-model="drawer"
     width="100%"
-    absolute
+    fixed
     temporary
     color="warning"
     class="nav-drawer"
   >
-    <v-btn icon fab color="secondary" @click="closeDrawer" fixed>
-      <v-icon color="white">
-        mdi-close
-      </v-icon>
-    </v-btn>
-    <span v-if="getUser">{{ getUser.email }}</span>
+    <v-list-item>
+      <v-btn
+        icon
+        fab
+        color="black"
+        @click="closeDrawer"
+        fixed
+        x-large
+        class="btn-close"
+      >
+        <v-icon color="white">mdi-close</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item-group v-if="getUser">
+      <v-list-item> </v-list-item>
+      <v-list-item>
+        <h1 class="white--text">
+          <v-avatar color="white">
+            <v-img :src="getUser.photoURL"></v-img>
+          </v-avatar>
+          {{ getUser.displayName }}
+        </h1>
+      </v-list-item>
+      <v-list-item>
+        <h3 class="white--text">北科信箱: {{ getUser.email }}</h3>
+      </v-list-item>
+      <v-list-item>
+        <v-divider class="white"></v-divider>
+      </v-list-item>
+      <v-list-item class="div-icon">
+        <div v-for="(item, index) in icons" :key="index">
+          <v-icon x-large color="white">
+            {{ item.icon }}
+          </v-icon>
+        </div>
+      </v-list-item>
+    </v-list-item-group>
   </v-navigation-drawer>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      icons: [
+        { icon: "mdi-facebook" },
+        { icon: "mdi-instagram" },
+        { icon: "mdi-youtube" }
+      ]
+    };
   },
   props: ["drawer"],
   methods: {
@@ -30,6 +67,7 @@ export default {
   computed: {
     getUser: {
       get() {
+        console.log(this.$store.state.user);
         return this.$store.state.user;
       }
     }
@@ -40,5 +78,16 @@ export default {
 <style>
 .nav-drawer {
   opacity: 80%;
+}
+.btn-close {
+  position: relative;
+  top: 1%;
+  left: 0;
+}
+.div-icon {
+  display: flex;
+  position: relative;
+  list-style: none;
+  justify-content: flex-start;
 }
 </style>
