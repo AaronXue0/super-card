@@ -1,21 +1,10 @@
 import firebase from "firebase";
 
-export async function signin() {
-  let userKey;
+export function signin() {
   let provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-  firebase.auth().languageCode = "pt";
+  firebase.auth().languageCode = "zh-TW";
   provider.setCustomParameters({
-    login_hint: "txxxxxxxxx@ntut.org.com"
+    hd: "ntut.org.tw"
   });
-  userKey = await firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(function(result) {
-      return result;
-    })
-    .catch(function(error) {
-      return error;
-    });
-  return userKey;
+  firebase.auth().signInWithRedirect(provider);
 }
