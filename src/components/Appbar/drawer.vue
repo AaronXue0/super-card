@@ -5,7 +5,6 @@
     fixed
     temporary
     color="warning"
-    class="nav-drawer"
   >
     <v-list-item>
       <v-btn
@@ -14,7 +13,7 @@
         color="black"
         @click="closeDrawer"
         fixed
-        x-large
+        large
         class="btn-close"
       >
         <v-icon color="white">mdi-close</v-icon>
@@ -122,9 +121,6 @@ export default {
 </script>
 
 <style>
-.nav-drawer {
-  opacity: 80%;
-}
 .btn-close {
   position: relative;
   top: 1%;

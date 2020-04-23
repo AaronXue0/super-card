@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-container>
-      <v-row justify="center" class="pa-0 mg-0">
+      <v-row justify="center">
         <v-col cols="12" md="4">
           <v-card
             shaped
