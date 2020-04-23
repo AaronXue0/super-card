@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace SoloLearn
+{
+    class Program
+    {
+        static void Main(string[] args)
+        { 
+            string name;
+            string gentle;
+            string birth;
+            string id;
+            string command;
+            while (1)  
+            {
+                name = Console.ReadLine();
+                gentle = Console.ReadLine();
+                birth = Console.ReadLine();
+                id = Console.ReadLine();
+                command = Console.ReadLine();
+                if (command.Equals("2"))
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
