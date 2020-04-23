@@ -36,6 +36,17 @@
       <v-list-item>
         <v-divider class="white"></v-divider>
       </v-list-item>
+    </v-list-item-group>
+    <v-list-item-group v-else>
+      <v-list-item></v-list-item>
+      <v-list-item>
+        <h1 class="white--text">請先登入北科信箱</h1>
+      </v-list-item>
+      <v-list-item>
+        <v-divider class="white"></v-divider>
+      </v-list-item>
+    </v-list-item-group>
+    <v-list-item-group>
       <v-list-item>
         <h2 class="white--text">發文規則</h2>
       </v-list-item>
@@ -49,16 +60,16 @@
       <v-list-item>
         <v-divider class="white"></v-divider>
       </v-list-item>
-      <v-btn fab icon>
-        <v-icon x-large color="white">{{ icons[0].i }}</v-icon>
-      </v-btn>
-      <v-btn fab icon>
-        <v-icon x-large color="white">{{ icons[1].i }}</v-icon>
-      </v-btn>
-      <v-btn fab icon>
-        <v-icon x-large color="white">{{ icons[2].i }}</v-icon>
-      </v-btn>
     </v-list-item-group>
+    <v-btn fab icon :href="icons[0].href">
+      <v-icon x-large color="white">{{ icons[0].i }}</v-icon>
+    </v-btn>
+    <v-btn fab icon :href="icons[1].href">
+      <v-icon x-large color="white">{{ icons[1].i }}</v-icon>
+    </v-btn>
+    <v-btn fab icon :href="icons[2].href">
+      <v-icon x-large color="white">{{ icons[2].i }}</v-icon>
+    </v-btn>
   </v-navigation-drawer>
 </template>
 
@@ -67,19 +78,22 @@ export default {
   data() {
     return {
       icons: [
-        { i: "mdi-facebook" },
-        { i: "mdi-instagram" },
-        { i: "mdi-youtube" }
+        { i: "mdi-facebook", href: "https://www.facebook.com/TaipeiTechSU/" },
+        { i: "mdi-instagram", href: "https://www.instagram.com/ntut_su/" },
+        {
+          i: "mdi-youtube",
+          href: "https://www.youtube.com/channel/UCYE4ivIc2WiBx5aGiiIw80w"
+        }
       ],
       rule: [
         {
-          text: "一天最多五則貼文"
+          text: "1. 一天最多五則貼文"
         },
         {
-          text: "發文規則同北科全體版，違者將刪除貼文"
+          text: "2. 發文規則同北科全體版，違者將刪除貼文"
         },
         {
-          text: "情節嚴重且多次屢犯，封鎖該使用者帳號"
+          text: "* 情節嚴重且多次屢犯，封鎖該使用者帳號"
         }
       ]
     };
