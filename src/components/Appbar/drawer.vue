@@ -62,13 +62,13 @@
       </v-list-item>
     </v-list-item-group>
     <v-btn fab icon :href="icons[0].href">
-      <v-icon x-large color="white">{{ icons[0].i }}</v-icon>
+      <v-icon large color="white">{{ icons[0].i }}</v-icon>
     </v-btn>
     <v-btn fab icon :href="icons[1].href">
-      <v-icon x-large color="white">{{ icons[1].i }}</v-icon>
+      <v-icon large color="white">{{ icons[1].i }}</v-icon>
     </v-btn>
     <v-btn fab icon :href="icons[2].href">
-      <v-icon x-large color="white">{{ icons[2].i }}</v-icon>
+      <v-icon large color="white">{{ icons[2].i }}</v-icon>
     </v-btn>
   </v-navigation-drawer>
 </template>

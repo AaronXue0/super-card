@@ -1,13 +1,13 @@
 <template>
-  <v-card shaped elevatio="0" color="secondary" dark>
-    <v-card-title>{{ cardInfo.id }}</v-card-title>
+  <v-card shaped elevatio color="secondary" dark>
+    <v-card-title>{{ getCards[cardInfo].id }}</v-card-title>
     <v-card-text class="white black--text">
       <br />
-      <span>{{ cardInfo.data.content }}</span>
+      <span>{{ getCards[cardInfo].data.content }}</span>
       <hr />
-      <small>Posy by - {{ cardInfo.data.postBy }}</small>
+      <small>Posy by - {{ getCards[cardInfo].data.postBy }}</small>
       <small class="small-float--right"
-        >Date - {{ cardInfo.data.postDate }}</small
+        >Date - {{ getCards[cardInfo].data.postDate }}</small
       >
     </v-card-text>
     <v-card-actions class="priCard">
@@ -15,13 +15,13 @@
         <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
         <v-icon v-else color="error">{{ iconSupport }}</v-icon>
       </v-btn>
-      <span>{{ cardInfo.data.likes }}</span>
+      <span>{{ getCards[cardInfo].data.likes }}</span>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import { writeCard } from "@/api/writeCard.js";
+import { likeCard } from "@/api/likeCard.js";
 export default {
   name: "card",
   props: ["cardInfo"],
@@ -39,15 +39,18 @@ export default {
     clickLike() {
       let vm = this;
       if (vm.getUser) {
+        vm.likedDetect();
         vm.clicked = !vm.clicked;
-        if (vm.clicked) writeCard(1, vm.cardInfo, this.$store.state.user);
-        else writeCard(-1, vm.cardInfo, this.$store.state.user);
+        if (vm.clicked)
+          likeCard(1, vm.getCards[vm.cardInfo], this.$store.state.user);
+        else likeCard(-1, vm.getCards[vm.cardInfo], this.$store.state.user);
       }
     },
     likedDetect() {
       let vm = this;
-      let id = this.$store.state.user.uid;
-      let obj = Object.keys(vm.cardInfo.data);
+      let id = vm.$store.state.user.uid;
+      let obj = Object.keys(vm.getCards[vm.cardInfo].data);
+      vm.clicked = false;
       obj.forEach(element => {
         if (element === id) {
           vm.clicked = true;
@@ -61,6 +64,9 @@ export default {
     },
     login() {
       return this.$store.state.login;
+    },
+    getCards() {
+      return this.$store.state.cards;
     }
   },
   mounted() {

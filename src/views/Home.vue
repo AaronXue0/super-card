@@ -8,7 +8,7 @@
             elevatio="0"
             color="secondary"
             dark
-            elevation="1"
+            elevation="0"
             max-width="1000"
           >
             <v-card-title>學權超人筆記本</v-card-title>
@@ -38,7 +38,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="4" v-for="(item, index) in getCards" :key="index">
-          <card :cardInfo="item" />
+          <card :cardInfo="index" />
         </v-col>
       </v-row>
     </v-container>
