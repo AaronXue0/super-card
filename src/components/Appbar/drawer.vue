@@ -49,8 +49,14 @@
       <v-list-item>
         <v-divider class="white"></v-divider>
       </v-list-item>
-      <v-btn fab icon v-for="(item1, index1) in icons" :key="index1">
-        <v-icon x-large color="white">{{ item1.icon }}</v-icon>
+      <v-btn fab icon>
+        <v-icon x-large color="white">{{ icons[0].i }}</v-icon>
+      </v-btn>
+      <v-btn fab icon>
+        <v-icon x-large color="white">{{ icons[1].i }}</v-icon>
+      </v-btn>
+      <v-btn fab icon>
+        <v-icon x-large color="white">{{ icons[2].i }}</v-icon>
       </v-btn>
     </v-list-item-group>
   </v-navigation-drawer>
@@ -61,9 +67,9 @@ export default {
   data() {
     return {
       icons: [
-        { icon: "mdi-facebook" },
-        { icon: "mdi-instagram" },
-        { icon: "mdi-youtube" }
+        { i: "mdi-facebook" },
+        { i: "mdi-instagram" },
+        { i: "mdi-youtube" }
       ],
       rule: [
         {
