@@ -38,9 +38,11 @@ export default {
   methods: {
     clickLike() {
       let vm = this;
-      vm.clicked = !vm.clicked;
-      if (vm.clicked) writeCard(1, vm.cardInfo, this.$store.state.user);
-      else writeCard(-1, vm.cardInfo, this.$store.state.user);
+      if (vm.getUser) {
+        vm.clicked = !vm.clicked;
+        if (vm.clicked) writeCard(1, vm.cardInfo, this.$store.state.user);
+        else writeCard(-1, vm.cardInfo, this.$store.state.user);
+      }
     },
     likedDetect() {
       let vm = this;

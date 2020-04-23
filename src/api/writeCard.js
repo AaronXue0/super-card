@@ -8,14 +8,14 @@ export function writeCard(likes, card, user) {
     db.collection("issues")
       .doc(card.id)
       .update({
-        likes: card.data.likes + likes,
+        likes: card.data.likes + 1,
         [id]: email
       });
   } else {
     db.collection("issues")
       .doc(card.id)
       .update({
-        likes: card.data.likes + likes,
+        likes: card.data.likes + -1,
         [id]: firebase.firestore.FieldValue.delete()
       });
   }
