@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="drawerState"
     width="100%"
     fixed
     temporary
@@ -42,18 +42,16 @@
       <v-list-item v-for="(item, index) in rule" :key="index">
         <p class="white--text text-xs-right">
           <br />
-          {{ item.index }}
+          {{ item.text }}
           <br />
         </p>
       </v-list-item>
       <v-list-item>
         <v-divider class="white"></v-divider>
       </v-list-item>
-      <v-list-item class="div-icon">
-        <div v-for="(item, index) in icons" :key="index">
-          <v-icon x-large color="white">{{ item.icon }}</v-icon>
-        </div>
-      </v-list-item>
+      <v-btn fab icon v-for="(item1, index1) in icons" :key="index1">
+        <v-icon x-large color="white">{{ item1.icon }}</v-icon>
+      </v-btn>
     </v-list-item-group>
   </v-navigation-drawer>
 </template>
@@ -69,28 +67,34 @@ export default {
       ],
       rule: [
         {
-          index: "一天最多五則貼文"
+          text: "一天最多五則貼文"
         },
         {
-          index: "發文規則同北科全體版，違者將刪除貼文"
+          text: "發文規則同北科全體版，違者將刪除貼文"
         },
         {
-          index: "情節嚴重且多次屢犯，封鎖該使用者帳號"
+          text: "情節嚴重且多次屢犯，封鎖該使用者帳號"
         }
       ]
     };
   },
-  props: ["drawer"],
   methods: {
     closeDrawer() {
-      this.$emit("close-Drawer");
+      this.$store.commit("setDrawer", false);
     }
   },
   computed: {
     getUser: {
       get() {
-        console.log(this.$store.state.user);
         return this.$store.state.user;
+      }
+    },
+    drawerState: {
+      get() {
+        return this.$store.state.drawer;
+      },
+      set(val) {
+        this.$store.commit("setDrawer", val);
       }
     }
   }

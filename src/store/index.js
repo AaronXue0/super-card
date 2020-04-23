@@ -10,6 +10,7 @@ import { retriveCards } from "@/api/retriveCards.js";
 
 export default new Vuex.Store({
   state: {
+    drawer: false,
     user: null,
     error: null,
     login: false,
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setCards(state, payload) {
       state.cards = payload;
+    },
+    setDrawer(state, val) {
+      state.drawer = val;
     }
   },
   actions: {

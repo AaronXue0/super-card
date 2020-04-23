@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <drawerbar :drawer="drawer" v-on:close-Drawer="closeDrawer" />
-    <appbar v-on:open-drawer="openDrawer" />
+    <drawerbar />
+    <appbar />
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -22,19 +22,8 @@ export default {
     drawerbar
   },
   data() {
-    return {
-      drawer: false
-    };
+    return {};
   },
-  methods: {
-    openDrawer() {
-      let vm = this;
-      vm.drawer = true;
-    },
-    closeDrawer() {
-      let vm = this;
-      vm.drawer = false;
-    }
-  }
+  methods: {}
 };
 </script>

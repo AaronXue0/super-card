@@ -36,7 +36,7 @@ export default {
       vm.dialog = false;
     },
     openDrawer() {
-      this.$emit("open-drawer");
+      this.$store.commit("setDrawer", true);
     }
   },
   components: {
