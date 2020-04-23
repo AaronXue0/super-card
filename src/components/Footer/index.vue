@@ -4,7 +4,7 @@
       <v-icon size="24px" color="primary">{{ item.icon }}</v-icon>
     </v-btn>
     <v-spacer />
-    <post />
+    <post v-if="getUser" />
     <v-card-text class="py-2 black--text text-center">
       {{ new Date().getFullYear() }} — <strong>NTUT SU</strong>
     </v-card-text>
@@ -25,7 +25,11 @@ export default {
   },
   methods: {},
   components: { post },
-  computed: {}
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    }
+  }
 };
 </script>
 
