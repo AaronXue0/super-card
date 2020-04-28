@@ -31,6 +31,9 @@ export default new Vuex.Store({
     },
     setDrawer(state, val) {
       state.drawer = val;
+    },
+    setNTUT(state, val) {
+      state.isntut = val;
     }
   },
   actions: {

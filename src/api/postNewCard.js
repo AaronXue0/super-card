@@ -4,19 +4,15 @@ export function postNewCard(title, content, user) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
-    stamp.getFullYear() +
-    "-" +
-    stamp.getMonth() +
-    "-" +
-    stamp.getDate() +
-    " " +
-    stamp.getHours() +
-    ":" +
-    stamp.getMinutes();
+    new Date().getFullYear() +
+    "/" +
+    (new Date().getMonth() + 1) +
+    "/" +
+    new Date().getDate();
   db.collection("issues")
     .doc(user.uid + "" + stamp)
     .set({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      timestamp: stamp,
       likes: 0,
       title: title,
       content: content,

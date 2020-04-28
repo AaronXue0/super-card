@@ -44,8 +44,8 @@ import { postNewCard } from "@/api/postNewCard.js";
 export default {
   data() {
     return {
-      title: "a",
-      content: "c",
+      title: "",
+      content: "",
       rules: {
         required: v => !!v || "必填",
         maxTitle: v => (v || "").length <= 30 || "文章內容必須小於150個字",

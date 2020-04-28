@@ -30,7 +30,6 @@ function detectLiked(card, id) {
   let liked = false;
   Object.keys(card.data).forEach(element => {
     if (element === id) {
-      console.log(element);
       liked = true;
       return liked;
     }

@@ -7,8 +7,8 @@
       <hr />
       <small>Posy by - {{ getCards[cardInfo].data.postBy }}</small>
       <small class="small-float--right"
-        >Date - {{ getCards[cardInfo].data.postDate }}</small
-      >
+        >Date - {{ getCards[cardInfo].data.postDate }}
+      </small>
     </v-card-text>
     <v-card-actions class="priCard">
       <v-btn icon @click="clickLike" color="priCard">

@@ -21,7 +21,7 @@
         </h1>
       </v-list-item>
       <v-list-item>
-        <h3 class="white--text">北科信箱: {{ getUser.email }}</h3>
+        <h3 class="white--text">Email | {{ getUser.email }}</h3>
       </v-list-item>
       <v-list-item>
         <v-divider class="white"></v-divider>
@@ -77,7 +77,7 @@ export default {
       ],
       rule: [
         {
-          text: "1. 測試版本一天五則貼文，發文冷卻為五分鐘"
+          text: "1. 一天五則貼文，發文冷卻為五分鐘"
         },
         {
           text: "2. 發文規則同北科全體版，違者將刪除貼文"

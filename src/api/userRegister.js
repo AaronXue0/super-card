@@ -9,6 +9,11 @@ export function userRegister() {
     .then(function(doc) {
       if (doc.exists) {
         console.log("Signin");
+        db.collection("users")
+          .doc(user.uid)
+          .update({
+            lastSignin: new Date()
+          });
       } else {
         db.collection("users")
           .doc(user.uid)
@@ -28,6 +33,7 @@ export function userRegister() {
       }
     })
     .catch(function(error) {
-      console.log("Error getting document:", error);
+      return error;
+      //   console.log("Error getting document:", error);
     });
 }
