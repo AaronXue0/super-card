@@ -6,7 +6,7 @@ Vue.use(Vuex);
 import { signin } from "@/api/signin.js";
 import { signout } from "@/api/signout.js";
 import { retriveCards } from "@/api/retriveCards.js";
-// import firebase from "firebase";
+import { userRegister } from "@/api/userRegister.js";
 
 export default new Vuex.Store({
   state: {
@@ -40,6 +40,7 @@ export default new Vuex.Store({
     autoSignIn({ commit }, payload) {
       commit("setUser", payload);
       commit("setLogin", true);
+      userRegister();
     },
     setCardsAction() {
       retriveCards();

@@ -1,6 +1,6 @@
 <template>
   <v-card shaped elevatio color="secondary" dark>
-    <v-card-title>{{ getCards[cardInfo].id }}</v-card-title>
+    <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
     <v-card-text class="white black--text">
       <br />
       <span>{{ getCards[cardInfo].data.content }}</span>

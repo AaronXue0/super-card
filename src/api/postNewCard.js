@@ -4,18 +4,35 @@ export function postNewCard(title, content, user) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
-    stamp.getFullYear() + " - " + stamp.getMonth() + " - " + stamp.getDate();
+    stamp.getFullYear() +
+    "-" +
+    stamp.getMonth() +
+    "-" +
+    stamp.getDate() +
+    " " +
+    stamp.getHours() +
+    ":" +
+    stamp.getMinutes();
   db.collection("issues")
-    .doc(title)
+    .doc(user.uid + "" + stamp)
     .set({
-      timestamp: stamp,
-      postDate: date,
-      postBy: user,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      likes: 0,
+      title: title,
       content: content,
-      likes: 0
+      postDate: date,
+      postBy: user.email,
+      owner: user.uid
     })
-    .then(function() {})
+    .then(function() {
+      db.collection("users")
+        .doc(user.uid)
+        .update({
+          lastSend: stamp
+        });
+    })
     .catch(function(error) {
+      console.log(error);
       return error;
     });
 }

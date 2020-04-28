@@ -6,19 +6,10 @@
     temporary
     color="warning"
   >
-    <v-list-item>
-      <v-btn
-        icon
-        fab
-        color="black"
-        @click="closeDrawer"
-        fixed
-        large
-        class="btn-close"
-      >
-        <v-icon color="white">mdi-close</v-icon>
-      </v-btn>
-    </v-list-item>
+    <v-btn icon fab color="black" @click="closeDrawer" fixed large>
+      <v-icon color="white">mdi-close</v-icon>
+    </v-btn>
+    <v-list-item></v-list-item>
     <v-list-item-group v-if="getUser">
       <v-list-item></v-list-item>
       <v-list-item>
@@ -86,7 +77,7 @@ export default {
       ],
       rule: [
         {
-          text: "1. 一天最多五則貼文"
+          text: "1. 測試版本一天一則貼文"
         },
         {
           text: "2. 發文規則同北科全體版，違者將刪除貼文"
@@ -121,11 +112,6 @@ export default {
 </script>
 
 <style>
-.btn-close {
-  position: relative;
-  top: 1%;
-  left: 0;
-}
 .div-icon {
   display: flex;
   position: relative;

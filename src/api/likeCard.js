@@ -32,7 +32,7 @@ function detectLiked(card, id) {
     if (element === id) {
       console.log(element);
       liked = true;
-      return true;
+      return liked;
     }
   });
   return liked;
