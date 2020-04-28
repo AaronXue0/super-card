@@ -6,8 +6,13 @@ export async function retriveCards() {
   db.collection("issues").onSnapshot(
     function(snapShot) {
       let data = [];
-      snapShot.forEach(doc => {
-        data.push({ id: doc.id, data: doc.data() });
+      snapShot.forEach(async doc => {
+        const comments = await getSubCollection(doc);
+        data.push({
+          id: doc.id,
+          data: doc.data(),
+          comment: comments
+        });
       });
       store.commit("setCards", sort(data));
     },
@@ -15,6 +20,21 @@ export async function retriveCards() {
       return error;
     }
   );
+}
+
+async function getSubCollection(doc) {
+  let db = firebase.firestore();
+  let subCollection = [];
+  db.collection("issues")
+    .doc(doc.id)
+    .collection("comments")
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        subCollection.push(doc.data());
+      });
+    });
+  return subCollection;
 }
 
 function sort(data) {

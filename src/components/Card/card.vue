@@ -1,27 +1,41 @@
 <template>
-  <v-card shaped elevatio color="secondary" dark>
-    <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
-    <v-card-text class="white black--text">
-      <br />
-      <span>{{ getCards[cardInfo].data.content }}</span>
-      <hr />
-      <small>Posy by - {{ getCards[cardInfo].data.postBy }}</small>
-      <small class="small-float--right"
-        >Date - {{ getCards[cardInfo].data.postDate }}
-      </small>
-    </v-card-text>
-    <v-card-actions class="priCard">
-      <v-btn icon @click="clickLike" color="priCard">
-        <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
-        <v-icon v-else color="error">{{ iconSupport }}</v-icon>
-      </v-btn>
-      <span>{{ getCards[cardInfo].data.likes }}</span>
-    </v-card-actions>
-  </v-card>
+  <div>
+    <v-card shaped elevation color="secondary" dark>
+      <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
+      <v-card-text class="white black--text">
+        <br />
+        <span>{{ getCards[cardInfo].data.content }}</span>
+        <hr />
+        <small>Posy by - {{ getCards[cardInfo].data.postBy }}</small>
+        <small class="small-float--right"
+          >Date - {{ getCards[cardInfo].data.postDate }}
+        </small>
+      </v-card-text>
+      <v-card-actions class="priCard">
+        <v-btn icon @click="clickLike" color="priCard">
+          <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
+          <v-icon v-else color="error">{{ iconSupport }}</v-icon>
+        </v-btn>
+        <span>{{ getCards[cardInfo].data.likes }}</span>
+        <v-spacer></v-spacer>
+        <v-btn icon color="priCard">
+          <v-icon color="white">mdi-trash-can</v-icon>
+        </v-btn>
+        <v-btn icon color="priCard">
+          <v-icon color="white">mdi-message-draw</v-icon>
+        </v-btn>
+        <v-btn icon color="priCard">
+          <v-icon color="white">mdi-archive</v-icon>
+        </v-btn>
+      </v-card-actions>
+      <commentView :cardInfo="cardInfo" />
+    </v-card>
+  </div>
 </template>
 
 <script>
 import { likeCard } from "@/api/likeCard.js";
+import commentView from "@/components/Card/comments.vue";
 export default {
   name: "card",
   props: ["cardInfo"],
@@ -31,10 +45,11 @@ export default {
       iconSupport: "mdi-heart",
       cardTitle: "Title",
       cardText: "Content",
-      clicked: false
+      clicked: false,
+      comments: null
     };
   },
-  components: {},
+  components: { commentView },
   methods: {
     clickLike() {
       let vm = this;
@@ -56,6 +71,10 @@ export default {
           vm.clicked = true;
         }
       });
+    },
+    setComments() {
+      let vm = this;
+      vm.comments = vm.getCards[vm.cardInfo].comment;
     }
   },
   computed: {
@@ -71,13 +90,9 @@ export default {
   },
   mounted() {
     this.likedDetect();
+    this.setComments();
   }
 };
 </script>
 
-<style>
-.small-float--right {
-  position: relative;
-  float: right;
-}
-</style>
+<style></style>
