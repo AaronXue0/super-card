@@ -60,11 +60,14 @@ export default {
   methods: {
     post() {
       let vm = this;
-      if (vm.title == "" || vm.content == "") return;
-      else postNewCard(vm.title, vm.content, vm.getUser);
-      this.$emit("cancel-dialog");
-      vm.title = "";
-      vm.content = "";
+      if (vm.rules.required && vm.rules.maxTitle && vm.rules.maxContent) {
+        postNewCard(vm.title, vm.content, vm.getUser);
+        this.$emit("cancel-dialog");
+        vm.title = "";
+        vm.content = "";
+      } else {
+        alert("請注意發文格式");
+      }
     },
     close() {
       this.$emit("cancel-dialog");
