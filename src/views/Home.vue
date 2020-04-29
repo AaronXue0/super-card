@@ -2,7 +2,7 @@
   <div class="home">
     <v-row justify="center">
       <v-col cols="12" md="5">
-        <v-card shaped color="secondary" dark elevation="0" max-width="1000">
+        <v-card shaped color="error" dark elevation="0" max-width="1000">
           <v-card-title>學權超人筆記本</v-card-title>
           <v-card-text class="white black--text">
             <br />

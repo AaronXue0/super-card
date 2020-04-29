@@ -129,4 +129,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.small-float--right {
+  position: relative;
+  float: right;
+}
+</style>
