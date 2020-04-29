@@ -22,7 +22,7 @@
         <v-btn
           icon
           color="priCard"
-          v-if="getAuthority && cardType == 0"
+          v-if="getAuthority && cardType != 2"
           @click="deleteSelf = true"
         >
           <v-icon color="white">mdi-trash-can</v-icon>
@@ -36,7 +36,7 @@
         <v-btn
           icon
           color="priCard"
-          v-if="getAuthority"
+          v-if="getAuthority && cardType == 0"
           @click="archiveSelf = true"
         >
           <v-icon color="white">mdi-archive</v-icon>

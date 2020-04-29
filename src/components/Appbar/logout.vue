@@ -29,11 +29,13 @@ export default {
   components: {},
   methods: {
     logout() {
-      this.$store.dispatch("userSignOut");
-      this.$emit("cancel-dialog", false);
+      let vm = this;
+      vm.$emit("cancel-dialog", false);
+      vm.$store.dispatch("userSignOut");
     },
     cancel() {
-      this.$emit("cancel-dialog", false);
+      let vm = this;
+      vm.$emit("cancel-dialog", false);
     }
   },
   computed: {},

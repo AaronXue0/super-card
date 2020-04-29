@@ -54,7 +54,6 @@ export default new Vuex.Store({
     userSignOut({ commit }) {
       signout();
       commit("setUser", null);
-      location.reload();
     }
   },
   getters: {}
