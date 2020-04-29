@@ -1,31 +1,52 @@
 <template>
-  <div class="finish">
+  <div class="home">
     <v-container>
-      <v-row>
-        <v-col cols="4"></v-col>
-        <v-col cols="4"></v-col>
-        <v-col cols="4"></v-col>
+      <v-row justify="center">
+        <v-col cols="12" md="4" v-for="(item, index) in getCards" :key="index">
+          <card v-if="item.data.isArchived" :cardInfo="index" :cardType="1" />
+        </v-col>
       </v-row>
+    </v-container>
+    <v-container>
+      <v-row justify="center"> </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import card from "@/components/Card/card.vue";
 export default {
-  name: "finish",
+  name: "process",
   data() {
     return {};
   },
-  components: {},
-  methods: {},
-  computed: {},
-  mounted() {}
+  components: {
+    card
+  },
+  methods: {
+    setDefaultCards() {
+      this.$store.dispatch("setCardsAction");
+    }
+  },
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    },
+    login() {
+      return this.$store.state.login;
+    },
+    getCards() {
+      return this.$store.state.cards;
+    }
+  },
+  mounted() {
+    this.setDefaultCards();
+  }
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
-.home {
-  font-family: "Noto Sans", sans-serif;
+.lr-arrow {
+  transform: rotate(-90deg);
 }
 </style>

@@ -3,7 +3,11 @@
     <v-container>
       <v-row justify="center">
         <v-col cols="12" md="4" v-for="(item, index) in getCards" :key="index">
-          <card :cardInfo="index" />
+          <card
+            v-if="item.data.isArchived == false"
+            :cardInfo="index"
+            :cardType="0"
+          />
         </v-col>
       </v-row>
     </v-container>

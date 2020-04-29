@@ -12,13 +12,14 @@ export function postNewCard(title, content, user) {
   db.collection("issues")
     .doc(user.uid + "" + stamp)
     .set({
-      timestamp: stamp,
-      likes: 0,
-      title: title,
       content: content,
+      isArchived: false,
+      likes: 0,
+      owner: user.uid,
       postDate: date,
       postBy: user.email,
-      owner: user.uid
+      title: title,
+      timestamp: stamp
     })
     .then(function() {
       db.collection("users")

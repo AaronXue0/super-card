@@ -22,7 +22,7 @@
         <v-btn
           icon
           color="priCard"
-          v-if="isOwer || getAuthority"
+          v-if="getAuthority && cardType == 0"
           @click="deleteSelf = true"
         >
           <v-icon color="white">mdi-trash-can</v-icon>
@@ -33,9 +33,19 @@
           v-on:cancel-dialog="cancelDialog"
         />
         <!-- archive feature -->
-        <v-btn icon color="priCard" v-if="getAuthority">
+        <v-btn
+          icon
+          color="priCard"
+          v-if="getAuthority"
+          @click="archiveSelf = true"
+        >
           <v-icon color="white">mdi-archive</v-icon>
         </v-btn>
+        <archiveDialog
+          :archiveSelf="archiveSelf"
+          :cardInfo="cardInfo"
+          v-on:cancel-dialog="cancelDialog"
+        />
       </v-card-actions>
       <commentView :cardInfo="cardInfo" />
     </v-card>
@@ -46,9 +56,10 @@
 import { likeCard } from "@/api/Card/likeCard.js";
 import commentView from "@/components/Card/comments.vue";
 import deleteDialog from "@/components/Card/deleteCard.vue";
+import archiveDialog from "@/components/Card/archiveCard.vue";
 export default {
   name: "card",
-  props: ["cardInfo"],
+  props: ["cardInfo", "cardType"],
   data() {
     return {
       iconDefault: "mdi-heart-outline",
@@ -57,10 +68,11 @@ export default {
       cardText: "Content",
       clicked: false,
       comments: null,
-      deleteSelf: false
+      deleteSelf: false,
+      archiveSelf: false
     };
   },
-  components: { commentView, deleteDialog },
+  components: { commentView, deleteDialog, archiveDialog },
   methods: {
     clickLike() {
       let vm = this;
@@ -88,7 +100,9 @@ export default {
       vm.comments = vm.getCards[vm.cardInfo].comment;
     },
     cancelDialog() {
-      this.deleteSelf = false;
+      let vm = this;
+      vm.deleteSelf = false;
+      vm.archiveSelf = false;
     }
   },
   computed: {
