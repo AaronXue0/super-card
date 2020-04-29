@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import store from "../store";
+import store from "../../store";
 
 export function likeCard(likes, card, user) {
   let db = firebase.firestore();

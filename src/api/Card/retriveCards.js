@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import store from "../store";
+import store from "../../store";
 
 export async function retriveCards() {
   let db = firebase.firestore();

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { postNewCard } from "@/api/postNewCard.js";
+import { postNewCard } from "@/api/Card/postNewCard.js";
 export default {
   data() {
     return {

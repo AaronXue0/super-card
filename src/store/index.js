@@ -3,10 +3,10 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import { signin } from "@/api/signin.js";
-import { signout } from "@/api/signout.js";
-import { retriveCards } from "@/api/retriveCards.js";
-import { userRegister } from "@/api/userRegister.js";
+import { signin } from "@/api/User/signin.js";
+import { signout } from "@/api/User/signout.js";
+import { retriveCards } from "@/api/Card/retriveCards.js";
+import { userRegister } from "@/api/User/userRegister.js";
 
 export default new Vuex.Store({
   state: {
@@ -22,7 +22,6 @@ export default new Vuex.Store({
       state.user = payload;
       let adminList = ["t107590017@ntut.org.tw"];
       if (adminList.includes(payload.email)) state.isAdmin = true;
-      console.log(state.isAdmin);
     },
     setError(state, payload) {
       state.error = payload;
