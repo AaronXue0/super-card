@@ -4,9 +4,9 @@
       <v-row justify="center">
         <v-col cols="12" md="4" v-for="(item, index) in getCards" :key="index">
           <card
-            v-if="getUser.email == item.data.postBy"
+            v-if="item.data.isArchived == false"
             :cardInfo="index"
-            :cardType="0"
+            :cardType="2"
           />
         </v-col>
       </v-row>

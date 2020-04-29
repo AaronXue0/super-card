@@ -48,7 +48,9 @@
         <v-tab-item value="tab-2">
           <finish />
         </v-tab-item>
-        <v-tab-item value="tab-3"> </v-tab-item>
+        <v-tab-item value="tab-3">
+          <possess />
+        </v-tab-item>
       </v-tabs-items>
     </v-tabs>
   </div>
@@ -57,6 +59,7 @@
 <script>
 import process from "@/components/Issues/process.vue";
 import finish from "@/components/Issues/finished.vue";
+import possess from "@/components/Issues/possess.vue";
 export default {
   name: "Home",
   data() {
@@ -68,7 +71,8 @@ export default {
   },
   components: {
     process,
-    finish
+    finish,
+    possess
   },
   methods: {
     switchIcon() {
