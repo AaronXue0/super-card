@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card shaped elevation color="secondary" dark>
+    <v-card shaped elevation color="secondary" dark min-width="350px">
       <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />

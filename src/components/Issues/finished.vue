@@ -2,9 +2,11 @@
   <div class="home">
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="4" v-for="(item, index) in getCards" :key="index">
-          <card v-if="item.data.isArchived" :cardInfo="index" :cardType="1" />
-        </v-col>
+        <div class="pa-0 ma-0" v-for="(item, index) in getCards" :key="index">
+          <v-col cols="12" md="" v-if="item.data.isArchived">
+            <card :cardInfo="index" :cardType="0" />
+          </v-col>
+        </div>
       </v-row>
     </v-container>
     <v-container>
