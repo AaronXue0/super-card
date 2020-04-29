@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import { postNewCard } from "@/api/postNewCard.js";
+import { deleteCard } from "@/api/Card/deleteCard.js";
 export default {
   data() {
     return {};
@@ -31,7 +31,9 @@ export default {
   methods: {
     doDelete() {
       let vm = this;
-      //   postNewCard(vm.title, vm.content, vm.getUser);
+      if (vm.getAuthority || vm.isOwer) {
+        deleteCard(vm.getCards[vm.cardInfo]);
+      }
       vm.$emit("cancel-dialog");
     },
     cancel() {

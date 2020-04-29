@@ -6,7 +6,7 @@
         <br />
         <span>{{ getCards[cardInfo].data.content }}</span>
         <hr />
-        <small>Posy by - {{ getCards[cardInfo].data.postBy }}</small>
+        <small>Post by - {{ getCards[cardInfo].data.postBy }}</small>
         <small class="small-float--right"
           >Date - {{ getCards[cardInfo].data.postDate }}
         </small>
