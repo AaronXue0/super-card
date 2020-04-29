@@ -1,12 +1,10 @@
 <template>
   <div class="home">
     <v-container>
-      <v-row justify="center">
-        <div class="pa-0 ma-0" v-for="(item, index) in getCards" :key="index">
-          <v-col cols="12" md="" v-if="item.data.isArchived">
-            <card :cardInfo="index" :cardType="0" />
-          </v-col>
-        </div>
+      <v-row justify="center" v-for="(item, index) in getCards" :key="index">
+        <v-col cols="12" md="4" v-if="item.data.isArchived">
+          <card :cardInfo="index" :cardType="0" />
+        </v-col>
       </v-row>
     </v-container>
     <v-container>
@@ -47,8 +45,4 @@ export default {
 };
 </script>
 
-<style>
-.lr-arrow {
-  transform: rotate(-90deg);
-}
-</style>
+<style></style>

@@ -1,16 +1,10 @@
 <template>
   <div class="home">
     <v-container>
-      <v-row justify="center">
-        <div class="pa-0 ma-0" v-for="(item, index) in getCards" :key="index">
-          <v-col cols="12" md="4">
-            <card
-              v-if="getUser.email == item.data.postBy"
-              :cardInfo="index"
-              :cardType="2"
-            />
-          </v-col>
-        </div>
+      <v-row justify="center" v-for="(item, index) in getCards" :key="index">
+        <v-col cols="12" md="4" v-if="getUser.email == item.data.postBy">
+          <card :cardInfo="index" :cardType="2" />
+        </v-col>
       </v-row>
     </v-container>
     <v-container>
@@ -51,8 +45,4 @@ export default {
 };
 </script>
 
-<style>
-.lr-arrow {
-  transform: rotate(-90deg);
-}
-</style>
+<style></style>

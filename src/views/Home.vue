@@ -21,7 +21,9 @@
               <v-icon color="white">{{ speechIcon1 }}</v-icon>
             </v-btn>
             <v-spacer />
-            <v-icon color="white" class="lr-arrow">mdi-swap-vertical</v-icon>
+            <v-btn icon color="priCard" @click="switchIcon()">
+              <v-icon color="white" class="lr-arrow">mdi-swap-vertical</v-icon>
+            </v-btn>
             <v-spacer />
             <v-btn icon color="priCard" @click="switchIcon()">
               <v-icon color="white">{{ speechIcon2 }}</v-icon>
@@ -92,5 +94,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 .home {
   font-family: "Noto Sans", sans-serif;
+}
+.lr-arrow {
+  transform: rotate(90deg);
 }
 </style>
