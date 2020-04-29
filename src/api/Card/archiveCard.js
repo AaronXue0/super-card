@@ -16,8 +16,6 @@ export async function archiveCard(card) {
     .catch(function(error) {
       console.log("Error getting document:", error);
     });
-
-  console.log(archive);
   db.collection("issues")
     .doc(card.id)
     .update({ isArchived: !archive });

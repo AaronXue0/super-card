@@ -47,9 +47,11 @@ export default {
       title: "",
       content: "",
       rules: {
-        required: v => !!v || "必填",
-        maxTitle: v => (v || "").length <= 30 || "文章內容必須小於150個字",
-        maxContent: v => (v || "").length <= 150 || "文章內容必須小於150個字"
+        required: value => !!value || "必填",
+        maxTitle: value =>
+          (value || "").length <= 30 || "文章內容必須小於150個字",
+        maxContent: value =>
+          (value || "").length <= 150 || "文章內容必須小於150個字"
       }
     };
   },
@@ -58,7 +60,8 @@ export default {
   methods: {
     post() {
       let vm = this;
-      postNewCard(vm.title, vm.content, vm.getUser);
+      if (vm.title == "" || vm.content == "") return;
+      else postNewCard(vm.title, vm.content, vm.getUser);
       this.$emit("cancel-dialog");
       vm.title = "";
       vm.content = "";
