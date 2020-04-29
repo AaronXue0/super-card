@@ -2,7 +2,7 @@
   <div class="home">
     <v-container>
       <v-row justify="center" v-for="(item, index) in getCards" :key="index">
-        <v-col cols="12" md="4" v-if="getUser.email == item.data.postBy">
+        <v-col cols="12" md="6" v-if="getUser.email == item.data.postBy">
           <card :cardInfo="index" :cardType="2" />
         </v-col>
       </v-row>

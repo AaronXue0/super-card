@@ -2,7 +2,7 @@
   <v-list-group no-action v-if="comments">
     <template v-slot:activator>
       <v-list-item-content>
-        <v-list-item-title>留言</v-list-item-title>
+        <v-list-item-title>學生會回覆</v-list-item-title>
       </v-list-item-content>
     </template>
     <br />
