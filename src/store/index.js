@@ -14,11 +14,15 @@ export default new Vuex.Store({
     user: null,
     error: null,
     login: false,
-    cards: null
+    cards: null,
+    isAdmin: false
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+      let adminList = ["t107590017@ntut.org.tw"];
+      if (adminList.includes(payload.email)) state.isAdmin = true;
+      console.log(state.isAdmin);
     },
     setError(state, payload) {
       state.error = payload;

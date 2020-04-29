@@ -18,13 +18,10 @@
         </v-btn>
         <span>{{ getCards[cardInfo].data.likes }}</span>
         <v-spacer></v-spacer>
-        <v-btn icon color="priCard">
+        <v-btn icon color="priCard" v-if="isOwer || getAuthority">
           <v-icon color="white">mdi-trash-can</v-icon>
         </v-btn>
-        <v-btn icon color="priCard">
-          <v-icon color="white">mdi-message-draw</v-icon>
-        </v-btn>
-        <v-btn icon color="priCard">
+        <v-btn icon color="priCard" v-if="getAuthority">
           <v-icon color="white">mdi-archive</v-icon>
         </v-btn>
       </v-card-actions>
@@ -72,7 +69,7 @@ export default {
         }
       });
     },
-    setComments() {
+    setDefault() {
       let vm = this;
       vm.comments = vm.getCards[vm.cardInfo].comment;
     }
@@ -86,11 +83,17 @@ export default {
     },
     getCards() {
       return this.$store.state.cards;
+    },
+    getAuthority() {
+      return this.$store.state.isAdmin;
+    },
+    isOwer() {
+      return this.getUser.email == this.getCards[this.cardInfo].data.postBy;
     }
   },
   mounted() {
     this.likedDetect();
-    this.setComments();
+    this.setDefault();
   }
 };
 </script>
