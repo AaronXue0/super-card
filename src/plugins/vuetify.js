@@ -17,7 +17,7 @@ export default new Vuetify({
         priCard: "#1565c0",
         secCard: "#ff6f60",
         accent: "#ffca28",
-        error: "#e53935",
+        error: "#c62828",
         info: "#2196F3",
         success: "#4CAF50",
         warning: "#000000"
