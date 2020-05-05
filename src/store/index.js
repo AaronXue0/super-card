@@ -20,7 +20,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      let adminList = ["t107590017@ntut.org.tw"];
+      let adminList = ["t107590017@ntut.org.tw", "ntutsuse15@gmail.com"];
       if (adminList.includes(payload.email)) state.isAdmin = true;
     },
     setError(state, payload) {

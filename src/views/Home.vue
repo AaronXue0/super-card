@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
+  <v-app class="home">
     <v-row justify="center">
       <v-col cols="12" md="5">
-        <v-card shaped color="error" dark elevation="0" max-width="1000">
+        <v-card shaped color="priCard" dark elevation="0" max-width="1000">
           <v-card-title>學權超人筆記本</v-card-title>
           <v-card-text class="white black--text">
             <br />
@@ -16,7 +16,7 @@
               但如果你認同他的論點就給予他支持吧
             </span>
           </v-card-text>
-          <v-card-actions class="priCard">
+          <v-card-actions class="error">
             <v-btn icon color="priCard" @click="switchIcon()">
               <v-icon color="white">{{ speechIcon1 }}</v-icon>
             </v-btn>
@@ -55,7 +55,7 @@
         </v-tab-item>
       </v-tabs-items>
     </v-tabs>
-  </div>
+  </v-app>
 </template>
 
 <script>
