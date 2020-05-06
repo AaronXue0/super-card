@@ -17,7 +17,7 @@
             </span>
           </v-card-text>
           <v-card-actions class="error">
-            <v-btn icon color="priCard" @click="switchIcon()">
+            <v-btn icon color="secCard" @click="switchIcon()">
               <v-icon color="white">{{ speechIcon1 }}</v-icon>
             </v-btn>
             <v-spacer />
@@ -25,7 +25,7 @@
               <v-icon color="white" class="lr-arrow">mdi-swap-vertical</v-icon>
             </v-btn>
             <v-spacer />
-            <v-btn icon color="priCard" @click="switchIcon()">
+            <v-btn icon color="secCard" @click="switchIcon()">
               <v-icon color="white">{{ speechIcon2 }}</v-icon>
             </v-btn>
           </v-card-actions>

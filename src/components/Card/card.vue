@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card shaped elevation color="secondary" dark min-width="350px">
+    <v-card shaped elevation color="error" dark min-width="350px">
       <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />
@@ -14,7 +14,7 @@
       <v-card-actions class="priCard">
         <v-btn icon @click="clickLike" color="priCard">
           <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
-          <v-icon v-else color="error">{{ iconSupport }}</v-icon>
+          <v-icon v-else color="secCard">{{ iconSupport }}</v-icon>
         </v-btn>
         <span>{{ getCards[cardInfo].data.likes }}</span>
         <v-spacer></v-spacer>
@@ -47,7 +47,7 @@
           v-on:cancel-dialog="cancelDialog"
         />
       </v-card-actions>
-      <commentView :cardInfo="cardInfo" />
+      <commentView :cardInfo="cardInfo" class="secondary" />
     </v-card>
   </div>
 </template>

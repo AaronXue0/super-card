@@ -2,10 +2,11 @@
   <v-list-group no-action v-if="comments">
     <template v-slot:activator>
       <v-list-item-content>
-        <v-list-item-title>學生會回覆</v-list-item-title>
+        <v-list-item-title
+          >問題回覆 ( {{ getCommentsLength }} )</v-list-item-title
+        >
       </v-list-item-content>
     </template>
-    <br />
     <v-list-item v-for="(item, index) in comments" :key="index" class="pa-0">
       <v-list-item-content class="pa-0">
         <v-textarea
@@ -51,6 +52,9 @@ export default {
   computed: {
     getCards() {
       return this.$store.state.cards;
+    },
+    getCommentsLength() {
+      return this.comments.length;
     }
   },
   mounted() {
