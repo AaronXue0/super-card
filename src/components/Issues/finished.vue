@@ -7,9 +7,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container>
-      <v-row justify="center"> </v-row>
-    </v-container>
   </div>
 </template>
 
@@ -29,12 +26,6 @@ export default {
     }
   },
   computed: {
-    getUser() {
-      return this.$store.state.user;
-    },
-    login() {
-      return this.$store.state.login;
-    },
     getCards() {
       return this.$store.state.cards;
     }

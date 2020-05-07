@@ -12,15 +12,15 @@ export default new Vuetify({
     },
     themes: {
       light: {
-        primary: "#82B1FF",
+        primary: "#ef9a9a",
         secondary: "#263238",
-        priCard: "#1565c0",
-        secCard: "#ffebee",
-        accent: "#ffca28",
-        error: "#c62828",
-        info: "#2196F3",
-        success: "#4CAF50",
-        warning: "#000000"
+        priCard: "#D7DCDE",
+        thrCard: "#3E516E",
+        secCard: "#3E516E",
+        forCard: "#8891A1",
+        cardHeader: "#ef9a99",
+        cardFooter: "#1976d2",
+        cardContent: "#64b5f6"
       }
     }
   },

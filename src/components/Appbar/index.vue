@@ -5,7 +5,7 @@
     <span class="noto-font" v-if="getUser">{{ getUser.displayName }}</span>
     <span class="noto-font" v-else>Sign In</span>
     <v-btn icon color="white" @click="Login()">
-      <v-icon large class="custom-starry-icon-left" color="secondary"
+      <v-icon large class="custom-starry-icon-left" color="primary"
         >mdi-crop-free</v-icon
       >
     </v-btn>

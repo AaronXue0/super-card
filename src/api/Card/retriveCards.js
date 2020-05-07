@@ -4,7 +4,7 @@ import store from "../../store";
 export async function retriveCards() {
   let db = firebase.firestore();
   db.collection("issues").onSnapshot(
-    function(snapShot) {
+    async function(snapShot) {
       let data = [];
       snapShot.forEach(async doc => {
         const comments = await getSubCollection(doc);
@@ -14,7 +14,7 @@ export async function retriveCards() {
           comment: comments
         });
       });
-      store.commit("setCards", sort(data));
+      store.commit("setCards", await sortData(data));
     },
     function(error) {
       return error;
@@ -37,14 +37,8 @@ async function getSubCollection(doc) {
   return subCollection;
 }
 
-function sort(data) {
-  let sorted = data;
-  sorted.sort(function(a, b) {
-    let keyA = a.data.likes;
-    let keyB = b.data.likes;
-    if (keyA > keyB) return -1;
-    if (keyA < keyB) return 1;
-    return 0;
-  });
+async function sortData(data) {
+  let obj = await data;
+  let sorted = obj.sort((a, b) => b.data.likes - a.data.likes);
   return sorted;
 }

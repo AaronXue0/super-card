@@ -2,55 +2,51 @@
   <v-app class="home">
     <v-row justify="center">
       <v-col cols="12" md="5">
-        <v-card shaped color="priCard" dark elevation="0" max-width="1000">
+        <v-card color="primary" dark tile elevation="0" max-width="1000">
           <v-card-title>學權超人筆記本</v-card-title>
           <v-card-text class="white black--text">
             <br />
             <span>
-              為自己的學權發聲，也聆聽他人的聲音
+              # 發文規則同北科全體版
               <hr />
-              學權的路上，或許有人與你的立場不同
+              1. 使用北科信箱登入
               <hr />
-              但我們可以選擇沈默與尊重
+              2.
+              提出自己遇到且希望能得到改善的問題描述，不妨提出解決的方法讓學校知道。
               <hr />
-              但如果你認同他的論點就給予他支持吧
+              3.
+              喜歡或是你也有困擾的問題可以點個愛心，越多關注就能讓學校越快處理
             </span>
           </v-card-text>
-          <v-card-actions class="error">
-            <v-btn icon color="secCard" @click="switchIcon()">
-              <v-icon color="white">{{ speechIcon1 }}</v-icon>
-            </v-btn>
-            <v-spacer />
-            <v-btn icon color="priCard" @click="switchIcon()">
-              <v-icon color="white" class="lr-arrow">mdi-swap-vertical</v-icon>
-            </v-btn>
-            <v-spacer />
-            <v-btn icon color="secCard" @click="switchIcon()">
-              <v-icon color="white">{{ speechIcon2 }}</v-icon>
-            </v-btn>
-          </v-card-actions>
+          <v-card color="primary" dark elevation="0" height="3"></v-card>
         </v-card>
       </v-col>
     </v-row>
     <v-tabs background-color="white" v-model="tab">
       <v-tabs-slider></v-tabs-slider>
       <v-tab href="#tab-1">
-        討論版
+        熱門事件
       </v-tab>
       <v-tab href="#tab-2">
-        處理完畢
+        討論版
       </v-tab>
       <v-tab href="#tab-3">
+        處理完畢
+      </v-tab>
+      <v-tab href="#tab-4" v-if="login">
         我的文章
       </v-tab>
       <v-tabs-items v-model="tab">
         <v-tab-item value="tab-1">
-          <process />
+          <popular />
         </v-tab-item>
         <v-tab-item value="tab-2">
-          <finish />
+          <process />
         </v-tab-item>
         <v-tab-item value="tab-3">
+          <finish />
+        </v-tab-item>
+        <v-tab-item value="tab-4">
           <possess />
         </v-tab-item>
       </v-tabs-items>
@@ -59,6 +55,7 @@
 </template>
 
 <script>
+import popular from "@/components/Issues/popular.vue";
 import process from "@/components/Issues/process.vue";
 import finish from "@/components/Issues/finished.vue";
 import possess from "@/components/Issues/possess.vue";
@@ -72,6 +69,7 @@ export default {
     };
   },
   components: {
+    popular,
     process,
     finish,
     possess
@@ -85,7 +83,11 @@ export default {
       vm.speechIcon2 = speechIcon;
     }
   },
-  computed: {},
+  computed: {
+    login() {
+      return this.$store.state.login;
+    }
+  },
   mounted() {}
 };
 </script>

@@ -29,7 +29,7 @@ export function postNewCard(title, content, user) {
         });
     })
     .catch(function(error) {
-      console.log(error);
+      alert("發文太快囉，稍等一下吧 | 記得要用北科信箱喔！");
       return error;
     });
 }

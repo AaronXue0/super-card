@@ -4,7 +4,7 @@
     width="100%"
     fixed
     temporary
-    color="warning"
+    class="primary"
   >
     <v-btn icon fab color="black" @click="closeDrawer" fixed large>
       <v-icon color="white">mdi-close</v-icon>

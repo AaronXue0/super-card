@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <v-btn color="secondary" @click="dialog = true" small fab elevation="0">
+    <v-btn color="white" @click="dialog = true" small fab elevation="0">
       <v-icon color="primary">
         mdi-message-text
       </v-icon>
