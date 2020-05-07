@@ -14,6 +14,7 @@ export function postNewCard(title, content, user) {
     .set({
       content: content,
       isArchived: false,
+      isDeleted: false,
       likes: 0,
       owner: user.uid,
       postDate: date,
