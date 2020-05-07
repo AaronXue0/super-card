@@ -4,6 +4,8 @@
       <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />
+        <span class="span-card-tag">#校園</span>
+        <hr />
         <span>{{ getCards[cardInfo].data.content }}</span>
         <hr />
         <small>Post by - {{ getCards[cardInfo].data.postBy }}</small>
@@ -133,5 +135,13 @@ export default {
 .small-float--right {
   position: relative;
   float: right;
+}
+.span-card-tag {
+  border: 0px hidden black;
+  background-color: #64b5f6;
+  color: white;
+  margin: auto;
+  padding: 1px;
+  text-align: center;
 }
 </style>

@@ -4,7 +4,7 @@
       <v-form v-model="valid" ref="form">
         <v-card>
           <v-card-title>
-            <span class="headline">議題卡片</span>
+            <span class="headline primary--text">議題卡片</span>
           </v-card-title>
 
           <v-col cols="12">
