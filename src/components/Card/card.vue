@@ -4,7 +4,7 @@
       <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />
-        <span class="span-card-tag">#校園</span>
+        <span class="span-card-tag">#幹話</span>
         <hr />
         <span>{{ getCards[cardInfo].data.content }}</span>
         <hr />

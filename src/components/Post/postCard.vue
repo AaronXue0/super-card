@@ -31,6 +31,11 @@
             ></v-textarea>
           </v-col>
           <v-card-actions>
+            <v-select
+              :items="items"
+              label="案件類型"
+              full-width="10"
+            ></v-select>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="post">Post</v-btn>
             <v-btn color="blue darken-1" text @click="close">Close</v-btn>
@@ -49,6 +54,16 @@ export default {
       valid: false,
       title: "",
       content: "",
+      items: [
+        "學校設備",
+        "資訊軟體",
+        "經費",
+        "場地環境",
+        "課程授課",
+        "國際競賽",
+        "交換學生",
+        "其他類型"
+      ],
       rules: {
         required: value => !!value || "必填",
         maxTitle: value =>
