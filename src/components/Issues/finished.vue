@@ -2,7 +2,11 @@
   <div class="home">
     <v-container>
       <v-row justify="center" v-for="(item, index) in getCards" :key="index">
-        <v-col cols="12" md="6" v-if="item.data.isArchived">
+        <v-col
+          cols="12"
+          md="6"
+          v-if="item.data.isArchived && item.data.isDeleted == false"
+        >
           <card :cardInfo="index" :cardType="0" />
         </v-col>
       </v-row>

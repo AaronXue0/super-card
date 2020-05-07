@@ -2,7 +2,13 @@
   <div class="home">
     <v-container>
       <v-row justify="center" v-for="(item, index) in getCards" :key="index">
-        <v-col cols="12" md="6" v-if="getUser.email == item.data.postBy">
+        <v-col
+          cols="12"
+          md="6"
+          v-if="
+            getUser.email == item.data.postBy && item.data.isDeleted == false
+          "
+        >
           <card :cardInfo="index" :cardType="1" />
         </v-col>
       </v-row>

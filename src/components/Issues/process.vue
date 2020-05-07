@@ -5,7 +5,7 @@
         <v-col
           cols="12"
           md="6"
-          v-if="item.data.isArchived == false"
+          v-if="item.data.isArchived == false && item.data.isDeleted == false"
           class="div-parent"
         >
           <card :cardInfo="index" :cardType="0" />
