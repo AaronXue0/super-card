@@ -63,7 +63,7 @@
           v-on:cancel-dialog="cancelDialog"
         />
       </v-card-actions>
-      <commentView :comments="card.comments" class="cardFooter" />
+      <commentView :card="card" class="cardFooter" />
     </v-card>
   </div>
 </template>
