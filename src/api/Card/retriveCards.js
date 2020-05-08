@@ -4,17 +4,17 @@ import store from "../../store";
 export async function retriveCards() {
   let db = firebase.firestore();
   db.collection("issues").onSnapshot(
-    async function(snapShot) {
+    function(snapShot) {
       let data = [];
       snapShot.forEach(async doc => {
         const comments = await getSubCollection(doc);
         data.push({
           id: doc.id,
           data: doc.data(),
-          comment: comments
+          comments: comments
         });
       });
-      store.commit("setCards", await sortData(data));
+      store.commit("setCards", data);
     },
     function(error) {
       return error;
@@ -37,8 +37,8 @@ async function getSubCollection(doc) {
   return subCollection;
 }
 
-async function sortData(data) {
-  let obj = await data;
-  let sorted = obj.sort((a, b) => b.data.likes - a.data.likes);
-  return sorted;
-}
+// async function sortData(data) {
+//   let obj = await data;
+//   let sorted = obj.sort((a, b) => b.data.likes - a.data.likes);
+//   return sorted;
+// }

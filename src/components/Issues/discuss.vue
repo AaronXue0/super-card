@@ -1,15 +1,14 @@
 <template>
-  <v-container class="popular">
+  <v-container class="procdiscussess">
     <v-row justify="center" v-for="(item, index) in cards" :key="index">
       <v-col
         cols="12"
         md="6"
         v-if="
-          item.data.likes >= 1 &&
-            item.data.isDeleted == false &&
-            item.data.isArchived == false
+          item.data.isDeleted == false &&
+            item.data.isArchived == false &&
+            item.data.isProcessing == false
         "
-        class="div-parent"
       >
         <card :card="item" :cardType="0" />
       </v-col>
@@ -20,7 +19,7 @@
 <script>
 import card from "@/components/Card/card.vue";
 export default {
-  name: "popular",
+  name: "discuss",
   props: ["cards"],
   data() {
     return {};

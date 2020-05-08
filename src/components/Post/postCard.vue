@@ -31,11 +31,7 @@
             ></v-textarea>
           </v-col>
           <v-card-actions>
-            <v-select
-              :items="items"
-              label="案件類型"
-              full-width="10"
-            ></v-select>
+            <v-select :items="items" label="案件類型"></v-select>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="post">Post</v-btn>
             <v-btn color="blue darken-1" text @click="close">Close</v-btn>

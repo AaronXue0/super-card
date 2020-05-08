@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <v-btn color="white" @click="dialog = true" small fab elevation="0">
+    <v-btn color="thrCard" @click="dialog = true" fab elevation="0">
       <v-icon color="primary">
         mdi-message-text
       </v-icon>
@@ -34,6 +34,6 @@ export default {
 <style>
 .post {
   position: relative;
-  top: -60px;
+  top: -80px;
 }
 </style>

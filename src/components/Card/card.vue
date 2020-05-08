@@ -1,24 +1,24 @@
 <template>
   <div>
     <v-card shaped elevation color="cardHeader" dark min-width="350px">
-      <v-card-title>{{ getCards[cardInfo].data.title }}</v-card-title>
+      <v-card-title>{{ card.data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />
         <span class="span-card-tag">#幹話</span>
         <hr />
-        <span>{{ getCards[cardInfo].data.content }}</span>
+        <span>{{ card.data.content }}</span>
         <hr />
-        <small>Post by - {{ getCards[cardInfo].data.postBy }}</small>
+        <small>Post by - {{ card.data.postBy }}</small>
         <small class="small-float--right"
-          >Date - {{ getCards[cardInfo].data.postDate }}
+          >Date - {{ card.data.postDate }}
         </small>
       </v-card-text>
       <v-card-actions class="cardContent">
         <v-btn icon @click="clickLike" color="priCard">
-          <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
+          <v-icon v-if="!getLiked" color="white">{{ iconDefault }}</v-icon>
           <v-icon v-else color="primary">{{ iconSupport }}</v-icon>
         </v-btn>
-        <span>{{ getCards[cardInfo].data.likes }}</span>
+        <span>{{ card.data.likes }}</span>
         <v-spacer></v-spacer>
         <!-- delete feature -->
         <v-btn
@@ -31,7 +31,7 @@
         </v-btn>
         <deleteDialog
           :deleteSelf="deleteSelf"
-          :cardInfo="cardInfo"
+          :cardInfo="card"
           v-on:cancel-dialog="cancelDialog"
         />
         <!-- archive feature -->
@@ -45,11 +45,11 @@
         </v-btn>
         <archiveDialog
           :archiveSelf="archiveSelf"
-          :cardInfo="cardInfo"
+          :cardInfo="card"
           v-on:cancel-dialog="cancelDialog"
         />
       </v-card-actions>
-      <commentView :cardInfo="cardInfo" class="cardFooter" />
+      <commentView :comments="card.comments" class="cardFooter" />
     </v-card>
   </div>
 </template>
@@ -61,7 +61,7 @@ import deleteDialog from "@/components/Card/deleteCard.vue";
 import archiveDialog from "@/components/Card/archiveCard.vue";
 export default {
   name: "card",
-  props: ["cardInfo", "cardType"],
+  props: ["card", "cardType"],
   data() {
     return {
       iconDefault: "mdi-heart-outline",
@@ -69,37 +69,41 @@ export default {
       cardTitle: "Title",
       cardText: "Content",
       clicked: false,
-      comments: null,
       deleteSelf: false,
       archiveSelf: false
     };
   },
   components: { commentView, deleteDialog, archiveDialog },
   methods: {
-    clickLike() {
+    async clickLike() {
       let vm = this;
       if (vm.getUser) {
         vm.likedDetect();
         vm.clicked = !vm.clicked;
         if (vm.clicked)
-          likeCard(1, vm.getCards[vm.cardInfo], this.$store.state.user);
-        else likeCard(-1, vm.getCards[vm.cardInfo], this.$store.state.user);
+          vm.card.data.likes = await likeCard(
+            1,
+            vm.card,
+            this.$store.state.user
+          );
+        else
+          vm.card.data.likes = await likeCard(
+            -1,
+            vm.card,
+            this.$store.state.user
+          );
       }
     },
     likedDetect() {
       let vm = this;
       let id = vm.$store.state.user.uid;
-      let obj = Object.keys(vm.getCards[vm.cardInfo].data);
+      let obj = Object.keys(vm.card.data);
       vm.clicked = false;
       obj.forEach(element => {
         if (element === id) {
           vm.clicked = true;
         }
       });
-    },
-    setDefault() {
-      let vm = this;
-      vm.comments = vm.getCards[vm.cardInfo].comment;
     },
     cancelDialog() {
       let vm = this;
@@ -111,9 +115,6 @@ export default {
     getUser() {
       return this.$store.state.user;
     },
-    login() {
-      return this.$store.state.login;
-    },
     getCards() {
       return this.$store.state.cards;
     },
@@ -121,12 +122,15 @@ export default {
       return this.$store.state.isAdmin;
     },
     isOwer() {
-      return this.getUser.email == this.getCards[this.cardInfo].data.postBy;
+      return this.getUser.email == this.cardInfo.data.postBy;
+    },
+    getLiked() {
+      return this.card.data.likes;
     }
   },
   mounted() {
     this.likedDetect();
-    this.setDefault();
+    console.log(this.card);
   }
 };
 </script>

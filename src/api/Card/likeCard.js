@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import store from "../../store";
 
-export function likeCard(likes, card, user) {
+export async function likeCard(likes, card, user) {
   let db = firebase.firestore();
   let id = user.uid;
   let email = user.email;
@@ -24,6 +24,14 @@ export function likeCard(likes, card, user) {
       });
     store.dispatch("setCardsAction");
   }
+  return db
+    .collection("issues")
+    .doc(card.id)
+    .get()
+    .then(doc => {
+      console.log(doc.data().likes);
+      return doc.data().likes;
+    });
 }
 
 function detectLiked(card, id) {

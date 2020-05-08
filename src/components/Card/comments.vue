@@ -9,25 +9,6 @@
     </template>
     <v-list-item v-for="(item, index) in comments" :key="index" class="pa-0">
       <v-list-item-content class="pa-0">
-        <!-- <v-textarea
-          single-line
-          disabled
-          rounded
-          auto-grow
-          row-height="0"
-          color="primary"
-          :value="item.reply"
-        >
-        </v-textarea>
-        <v-text-field
-          disabled
-          rounded
-          :value="item.postBy"
-          auto-grow
-          row-height="1"
-          class="email-field"
-        >
-        </v-text-field> -->
         <p class="p-comment-title">{{ item.reply }}</p>
         <p class="p-comment-postBy">{{ item.postBy }}</p>
       </v-list-item-content>
@@ -37,20 +18,13 @@
 
 <script>
 export default {
-  name: "card",
-  props: ["cardInfo"],
+  name: "comments",
+  props: ["comments"],
   data() {
-    return {
-      comments: null
-    };
+    return {};
   },
   components: {},
-  methods: {
-    setComments() {
-      let vm = this;
-      vm.comments = vm.getCards[vm.cardInfo].comment;
-    }
-  },
+  methods: {},
   computed: {
     getCards() {
       return this.$store.state.cards;
@@ -60,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    this.setComments();
+    console.log("comm", this.comments);
   }
 };
 </script>
