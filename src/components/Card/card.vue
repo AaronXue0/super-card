@@ -20,6 +20,20 @@
         </v-btn>
         <span>{{ card.data.likes }}</span>
         <v-spacer></v-spacer>
+        <!-- process feature -->
+        <v-btn
+          icon
+          color="priCard"
+          v-if="getAuthority && cardType == 0"
+          @click="processSelf = true"
+        >
+          <v-icon color="white">mdi-sword</v-icon>
+        </v-btn>
+        <processDialog
+          :processSelf="processSelf"
+          :card="card"
+          v-on:cancel-dialog="cancelDialog"
+        />
         <!-- delete feature -->
         <v-btn
           icon
@@ -31,7 +45,7 @@
         </v-btn>
         <deleteDialog
           :deleteSelf="deleteSelf"
-          :cardInfo="card"
+          :card="card"
           v-on:cancel-dialog="cancelDialog"
         />
         <!-- archive feature -->
@@ -45,7 +59,7 @@
         </v-btn>
         <archiveDialog
           :archiveSelf="archiveSelf"
-          :cardInfo="card"
+          :card="card"
           v-on:cancel-dialog="cancelDialog"
         />
       </v-card-actions>
@@ -59,6 +73,7 @@ import { likeCard } from "@/api/Card/likeCard.js";
 import commentView from "@/components/Card/comments.vue";
 import deleteDialog from "@/components/Card/deleteCard.vue";
 import archiveDialog from "@/components/Card/archiveCard.vue";
+import processDialog from "@/components/Card/processCard.vue";
 export default {
   name: "card",
   props: ["card", "cardType"],
@@ -70,10 +85,11 @@ export default {
       cardText: "Content",
       clicked: false,
       deleteSelf: false,
-      archiveSelf: false
+      archiveSelf: false,
+      processSelf: false
     };
   },
-  components: { commentView, deleteDialog, archiveDialog },
+  components: { commentView, deleteDialog, archiveDialog, processDialog },
   methods: {
     async clickLike() {
       let vm = this;
@@ -109,6 +125,7 @@ export default {
       let vm = this;
       vm.deleteSelf = false;
       vm.archiveSelf = false;
+      vm.processSelf = false;
     }
   },
   computed: {

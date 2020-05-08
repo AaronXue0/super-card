@@ -1,6 +1,13 @@
 import firebase from "firebase";
 
-export function postNewCard(title, content, issueType, user) {
+export function postNewCard(
+  user,
+  title,
+  content,
+  issueType,
+  isArchived,
+  isProcessing
+) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
@@ -13,8 +20,8 @@ export function postNewCard(title, content, issueType, user) {
     .doc(user.uid + "" + stamp)
     .set({
       content: content,
-      isArchived: false,
-      isProcessing: false,
+      isArchived: isArchived,
+      isProcessing: isProcessing,
       isDeleted: false,
       issueType: issueType,
       likes: 0,

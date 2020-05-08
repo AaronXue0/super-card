@@ -30,6 +30,18 @@
               v-model="content"
             ></v-textarea>
           </v-col>
+          <v-col v-if="getAuthority">
+            <v-select
+              :items="boolSelect"
+              v-model="isProcessing"
+              label="處理中"
+            ></v-select>
+            <v-select
+              :items="boolSelect"
+              v-model="isArchived"
+              label="處理完畢"
+            ></v-select>
+          </v-col>
           <v-card-actions>
             <v-select
               :items="items"
@@ -56,6 +68,8 @@ export default {
       title: "",
       content: "",
       issueType: null,
+      isProcessing: false,
+      isArchived: false,
       items: [
         "學校設備",
         "資訊軟體",
@@ -66,6 +80,7 @@ export default {
         "交換學生",
         "其他類型"
       ],
+      boolSelect: [true, false],
       rules: {
         required: value => !!value || "必填",
         maxTitle: value =>
@@ -82,10 +97,31 @@ export default {
     post() {
       let vm = this;
       if (this.$refs.form.validate()) {
-        postNewCard(vm.title, vm.content, vm.issueType, vm.getUser);
+        if (vm.getAuthority) {
+          postNewCard(
+            vm.getUser,
+            vm.title,
+            vm.content,
+            vm.issueType,
+            vm.isArchived,
+            vm.isProcessing
+          );
+        } else {
+          postNewCard(
+            vm.getUser,
+            vm.title,
+            vm.content,
+            vm.issueType,
+            false,
+            false
+          );
+        }
         this.$emit("cancel-dialog");
         vm.title = "";
         vm.content = "";
+        vm.issueType = null;
+        vm.isArchived = false;
+        vm.isProcessing = false;
       }
     },
     close() {
@@ -95,6 +131,9 @@ export default {
   computed: {
     getUser() {
       return this.$store.state.user;
+    },
+    getAuthority() {
+      return this.$store.state.isAdmin;
     }
   },
   mounted() {}

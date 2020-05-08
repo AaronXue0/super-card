@@ -26,13 +26,13 @@ export default {
   data() {
     return {};
   },
-  props: ["archiveSelf", "cardInfo"],
+  props: ["archiveSelf", "card"],
   components: {},
   methods: {
     doArchive() {
       let vm = this;
       if (vm.getAuthority) {
-        archiveCard(vm.getCards[vm.cardInfo]);
+        archiveCard(vm.card);
       }
       vm.$emit("cancel-dialog");
     },
@@ -55,7 +55,7 @@ export default {
       return this.$store.state.isAdmin;
     },
     isOwer() {
-      return this.getUser.email == this.getCards[this.cardInfo].data.postBy;
+      return this.getUser.email == this.card.data.postBy;
     }
   },
   mounted() {}
