@@ -18,8 +18,8 @@ export default new Vuetify({
         secCard: "#3E516E",
         thrCard: "#3E516E",
         forCard: "#8891A1",
-        cardHeader: "#ef9a99",
-        cardFooter: "#1976d2",
+        cardHeader: "#1976d2",
+        cardFooter: "#ef9a99",
         cardContent: "#64b5f6"
       }
     }

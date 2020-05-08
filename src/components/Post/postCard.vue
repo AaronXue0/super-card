@@ -31,7 +31,12 @@
             ></v-textarea>
           </v-col>
           <v-card-actions>
-            <v-select :items="items" label="案件類型"></v-select>
+            <v-select
+              :items="items"
+              v-model="issueType"
+              label="案件類型"
+              :rules="[rules.mustSelect]"
+            ></v-select>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" text @click="post">Post</v-btn>
             <v-btn color="blue darken-1" text @click="close">Close</v-btn>
@@ -50,10 +55,11 @@ export default {
       valid: false,
       title: "",
       content: "",
+      issueType: null,
       items: [
         "學校設備",
         "資訊軟體",
-        "經費",
+        "經費問題",
         "場地環境",
         "課程授課",
         "國際競賽",
@@ -65,7 +71,8 @@ export default {
         maxTitle: value =>
           (value || "").length <= 30 || "文章內容必須小於30個字",
         maxContent: value =>
-          (value || "").length <= 150 || "文章內容必須小於150個字"
+          (value || "").length <= 150 || "文章內容必須小於150個字",
+        mustSelect: value => !!value || "請選擇議題類型"
       }
     };
   },
@@ -75,7 +82,7 @@ export default {
     post() {
       let vm = this;
       if (this.$refs.form.validate()) {
-        postNewCard(vm.title, vm.content, vm.getUser);
+        postNewCard(vm.title, vm.content, vm.issueType, vm.getUser);
         this.$emit("cancel-dialog");
         vm.title = "";
         vm.content = "";

@@ -33,9 +33,7 @@ export default {
       return this.comments.length;
     }
   },
-  mounted() {
-    console.log("comm", this.comments);
-  }
+  mounted() {}
 };
 </script>
 

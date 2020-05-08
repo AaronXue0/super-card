@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-export function postNewCard(title, content, user) {
+export function postNewCard(title, content, issueType, user) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
@@ -16,6 +16,7 @@ export function postNewCard(title, content, user) {
       isArchived: false,
       isProcessing: false,
       isDeleted: false,
+      issueType: issueType,
       likes: 0,
       owner: user.uid,
       postDate: date,

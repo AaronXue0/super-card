@@ -4,7 +4,7 @@
       <v-card-title>{{ card.data.title }}</v-card-title>
       <v-card-text class="white black--text">
         <br />
-        <span class="span-card-tag">#幹話</span>
+        <span class="span-card-tag">#{{ card.data.issueType }}</span>
         <hr />
         <span>{{ card.data.content }}</span>
         <hr />
@@ -130,7 +130,6 @@ export default {
   },
   mounted() {
     this.likedDetect();
-    console.log(this.card);
   }
 };
 </script>
@@ -142,8 +141,8 @@ export default {
 }
 .span-card-tag {
   border: 0px hidden black;
-  background-color: #64b5f6;
-  color: white;
+  background-color: #ef9a9a;
+  color: rgb(255, 255, 255);
   margin: auto;
   padding: 1px;
   text-align: center;
