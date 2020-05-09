@@ -29,7 +29,6 @@ export async function likeCard(likes, card, user) {
     .doc(card.id)
     .get()
     .then(doc => {
-      console.log(doc.data().likes);
       return doc.data().likes;
     });
 }

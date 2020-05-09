@@ -31,7 +31,7 @@ async function getSubCollection(doc) {
     .get()
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {
-        subCollection.push(doc.data());
+        subCollection.push({ data: doc.data(), id: doc.id });
       });
     });
   return subCollection;

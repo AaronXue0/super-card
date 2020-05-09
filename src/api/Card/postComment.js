@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-export function postComment(user, card, reply) {
+export function postComment(user, card, reply, id) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
@@ -12,10 +12,13 @@ export function postComment(user, card, reply) {
   db.collection("issues")
     .doc(card.id)
     .collection("comments")
-    .add({
+    .doc(id)
+    .set({
       reply: reply,
       postBy: user.email,
-      postDate: date
+      postDate: date,
+      likes: 0,
+      isDeleted: false
     })
     .then(function() {
       db.collection("users")
@@ -25,8 +28,16 @@ export function postComment(user, card, reply) {
         });
     })
     .catch(function(error) {
-      console.log(error);
       alert("留言太快囉，稍等一下吧 | 記得要用北科信箱喔！");
       return error;
     });
+}
+
+export function deleteComment(card, item) {
+  let db = firebase.firestore();
+  db.collection("issues")
+    .doc(card.id)
+    .collection("comments")
+    .doc(item.id)
+    .update({ isDeleted: true });
 }

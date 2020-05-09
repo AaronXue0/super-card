@@ -22,31 +22,39 @@
       </v-btn>
     </v-list-item>
     <v-list-item
-      v-for="(item, index) in card.comments"
+      v-for="(item, index) in card.comments.filter(
+        i => i.data.isDeleted == false
+      )"
       :key="index"
       class="pa-0"
     >
       <v-list-item-content class="pa-0 list-comment">
-        <p class="p-comment-title">{{ item.reply }}</p>
-        <p class="p-comment-postBy">{{ item.postBy }}</p>
-        <v-btn icon fab class="btn-delete-comment" @click="doReply">
-          <v-icon>
-            mdi-delete
-          </v-icon>
-        </v-btn>
+        <p class="p-comment-title">{{ item.data.reply }}</p>
+        <p class="p-comment-postBy">{{ item.data.postBy }}</p>
       </v-list-item-content>
+      <v-btn
+        icon
+        fab
+        class="btn-delete-comment"
+        @click="deleteComment(item, index)"
+      >
+        <v-icon>
+          mdi-delete
+        </v-icon>
+      </v-btn>
     </v-list-item>
   </v-list-group>
 </template>
 
 <script>
-import { postComment } from "@/api/Card/postComment.js";
+import { postComment, deleteComment } from "@/api/Card/postComment.js";
 export default {
   name: "comments",
   props: ["card"],
   data() {
     return {
-      reply: ""
+      reply: "",
+      replyLen: 0
     };
   },
   components: {},
@@ -54,14 +62,27 @@ export default {
     doReply() {
       let vm = this;
       if (vm.reply != "") {
-        postComment(vm.getUser, vm.card, vm.reply);
-        vm.updateCard();
+        let id = vm.getUser.uid + new Date();
+        postComment(vm.getUser, vm.card, vm.reply, id);
+        vm.updateCard(id);
       }
       vm.reply = "";
     },
-    updateCard() {
+    deleteComment(item, index) {
       let vm = this;
-      vm.card.comments.push({ reply: vm.reply, postBy: vm.getUser.email });
+      deleteComment(vm.card, item);
+      vm.card.comments.splice(index, 1);
+    },
+    updateCard(id) {
+      let vm = this;
+      vm.card.comments.unshift({
+        data: {
+          reply: vm.reply,
+          postBy: vm.getUser.email,
+          isDeleted: false
+        },
+        id: id
+      });
     }
   },
   computed: {
@@ -72,7 +93,14 @@ export default {
       return this.$store.state.cards;
     },
     getCommentsLength() {
-      return this.card.comments.length;
+      let vm = this;
+      if (vm.replyLen > 0) return vm.replyLen;
+      vm.replyLen = vm.card.comments.length;
+      vm.card.comments.forEach(element => {
+        if (element.data.isDeleted) vm.replyLen--;
+      });
+      return vm.replyLen;
+      // return this.card.comments.length;
     },
     getAuthority() {
       return this.$store.state.isAdmin;
@@ -86,7 +114,7 @@ export default {
 .list-comment {
   position: relative;
   top: -10px;
-  margin-bottom: -50px;
+  margin-bottom: -10px;
 }
 .comment-message {
   position: relative;
@@ -94,8 +122,7 @@ export default {
 }
 .btn-delete-comment {
   position: relative;
-  left: 50px;
-  top: -60px;
+  left: -70px;
   float: right;
 }
 .p-comment-title {
