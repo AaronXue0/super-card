@@ -37,6 +37,7 @@
         fab
         class="btn-delete-comment"
         @click="deleteComment(item, index)"
+        v-if="getAuthority"
       >
         <v-icon>
           mdi-delete
@@ -72,6 +73,7 @@ export default {
       let vm = this;
       deleteComment(vm.card, item);
       vm.card.comments.splice(index, 1);
+      vm.replyLen--;
     },
     updateCard(id) {
       let vm = this;
@@ -99,6 +101,7 @@ export default {
       vm.card.comments.forEach(element => {
         if (element.data.isDeleted) vm.replyLen--;
       });
+      if (vm.replyLen == null) vm.replyLen = 0;
       return vm.replyLen;
       // return this.card.comments.length;
     },
