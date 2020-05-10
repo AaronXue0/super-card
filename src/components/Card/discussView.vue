@@ -3,7 +3,7 @@
     <template v-slot:activator>
       <v-list-item-content>
         <v-list-item-title
-          >問題回覆 ( {{ getCommentsLength }} )</v-list-item-title
+          >問題討論 ( {{ getCommentsLength }} )</v-list-item-title
         >
       </v-list-item-content>
     </template>
