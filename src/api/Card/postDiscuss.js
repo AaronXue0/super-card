@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-export function postComment(user, card, reply, id, subName) {
+export function postDiscuss(user, card, reply, id) {
   let db = firebase.firestore();
   let stamp = new Date();
   let date =
@@ -11,7 +11,7 @@ export function postComment(user, card, reply, id, subName) {
     new Date().getDate();
   db.collection("issues")
     .doc(card.id)
-    .collection(subName)
+    .collection("discuss")
     .doc(id)
     .set({
       reply: reply,
@@ -33,11 +33,11 @@ export function postComment(user, card, reply, id, subName) {
     });
 }
 
-export function deleteComment(card, item, subName) {
+export function deleteComment(card, item) {
   let db = firebase.firestore();
   db.collection("issues")
     .doc(card.id)
-    .collection(subName)
+    .collection("comments")
     .doc(item.id)
     .update({ isDeleted: true });
 }

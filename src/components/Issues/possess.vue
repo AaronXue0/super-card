@@ -1,10 +1,15 @@
 <template>
   <v-container v-if="cards" class="possess">
-    <v-row justify="center" v-for="(item, index) in cards" :key="index">
+    <v-row justify="center">
       <v-col
         cols="12"
         md="6"
-        v-if="getUser.email == item.data.postBy && item.data.isDeleted == false"
+        lg="4"
+        v-for="(item, index) in cards.filter(
+          item =>
+            getUser.email == item.data.postBy && item.data.isDeleted == false
+        )"
+        :key="index"
       >
         <card :card="item" :cardType="1" />
       </v-col>

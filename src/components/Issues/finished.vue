@@ -1,10 +1,14 @@
 <template>
   <v-container v-if="cards" class="finished">
-    <v-row justify="center" v-for="(item, index) in cards" :key="index">
+    <v-row justify="center">
       <v-col
         cols="12"
         md="6"
-        v-if="item.data.isArchived && item.data.isDeleted == false"
+        lg="4"
+        v-for="(item, index) in cards.filter(
+          item => item.data.isArchived && item.data.isDeleted == false
+        )"
+        :key="index"
       >
         <card :card="item" :cardType="0" />
       </v-col>

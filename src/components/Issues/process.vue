@@ -1,14 +1,17 @@
 <template>
   <v-container class="process">
-    <v-row justify="center" v-for="(item, index) in cards" :key="index">
+    <v-row justify="center">
       <v-col
         cols="12"
         md="6"
-        v-if="
-          item.data.isDeleted == false &&
+        lg="4"
+        v-for="(item, index) in cards.filter(
+          item =>
+            item.data.isDeleted == false &&
             item.data.isArchived == false &&
             item.data.isProcessing == true
-        "
+        )"
+        :key="index"
       >
         <card :card="item" :cardType="0" />
       </v-col>

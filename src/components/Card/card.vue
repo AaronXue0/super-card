@@ -63,7 +63,12 @@
           v-on:cancel-dialog="cancelDialog"
         />
       </v-card-actions>
-      <commentView :card="card" class="cardFooter" />
+      <commentView
+        v-if="card.data.isProcessing"
+        :card="card"
+        class="cardFooter"
+      />
+      <discussView v-else :card="card" class="cardFooter" />
     </v-card>
   </div>
 </template>
@@ -71,6 +76,7 @@
 <script>
 import { likeCard } from "@/api/Card/likeCard.js";
 import commentView from "@/components/Card/comments.vue";
+import discussView from "@/components/Card/discussView.vue";
 import deleteDialog from "@/components/Card/deleteCard.vue";
 import archiveDialog from "@/components/Card/archiveCard.vue";
 import processDialog from "@/components/Card/processCard.vue";
@@ -89,7 +95,13 @@ export default {
       processSelf: false
     };
   },
-  components: { commentView, deleteDialog, archiveDialog, processDialog },
+  components: {
+    commentView,
+    discussView,
+    deleteDialog,
+    archiveDialog,
+    processDialog
+  },
   methods: {
     async clickLike() {
       let vm = this;

@@ -7,11 +7,13 @@ export async function retriveCards() {
     function(snapShot) {
       let data = [];
       snapShot.forEach(async doc => {
-        const comments = await getSubCollection(doc);
+        const comments = await getSubCollection(doc, "comments");
+        const discuss = await getSubCollection(doc, "discuss");
         data.push({
           id: doc.id,
           data: doc.data(),
-          comments: comments
+          comments: comments,
+          discuss: discuss
         });
       });
       store.commit("setCards", data);
@@ -22,12 +24,12 @@ export async function retriveCards() {
   );
 }
 
-async function getSubCollection(doc) {
+async function getSubCollection(doc, subName) {
   let db = firebase.firestore();
   let subCollection = [];
   db.collection("issues")
     .doc(doc.id)
-    .collection("comments")
+    .collection(subName)
     .get()
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {

@@ -1,16 +1,19 @@
 <template>
-  <v-container class="procdiscussess" v-if="cards">
-    <v-row
-      justify="center"
-      v-for="(item, index) in cards.filter(
-        item =>
-          item.data.isDeleted == false &&
-          item.data.isArchived == false &&
-          item.data.isProcessing == false
-      )"
-      :key="index"
-    >
-      <v-col cols="12" md="6">
+  <v-container class="procdiscussess">
+    <v-row v-if="cards">
+      <v-col
+        cols="12"
+        md="6"
+        lg="4"
+        justify="center"
+        v-for="(item, index) in cards.filter(
+          item =>
+            item.data.isDeleted == false &&
+            item.data.isArchived == false &&
+            item.data.isProcessing == false
+        )"
+        :key="index"
+      >
         <card :card="item" :cardType="0" />
       </v-col>
     </v-row>

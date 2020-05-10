@@ -7,7 +7,7 @@
         >
       </v-list-item-content>
     </template>
-    <v-list-item v-if="getAuthority">
+    <v-list-item v-if="getUser">
       <v-text-field
         label="回覆"
         v-model="reply"
@@ -22,7 +22,7 @@
       </v-btn>
     </v-list-item>
     <v-list-item
-      v-for="(item, index) in card.comments.filter(
+      v-for="(item, index) in card.discuss.filter(
         i => i.data.isDeleted == false
       )"
       :key="index"
@@ -50,7 +50,7 @@
 <script>
 import { postComment, deleteComment } from "@/api/Card/postComment.js";
 export default {
-  name: "comments",
+  name: "discuss",
   props: ["card"],
   data() {
     return {
@@ -64,20 +64,20 @@ export default {
       let vm = this;
       if (vm.reply != "") {
         let id = vm.getUser.uid + new Date();
-        postComment(vm.getUser, vm.card, vm.reply, id, "comments");
+        postComment(vm.getUser, vm.card, vm.reply, id, "discuss");
         vm.updateCard(id);
       }
       vm.reply = "";
     },
     deleteComment(item, index) {
       let vm = this;
-      deleteComment(vm.card, item, "comments");
-      vm.card.comments.splice(index, 1);
+      deleteComment(vm.card, item, "discuss");
+      vm.card.discuss.splice(index, 1);
       vm.replyLen--;
     },
     updateCard(id) {
       let vm = this;
-      vm.card.comments.unshift({
+      vm.card.discuss.unshift({
         data: {
           reply: vm.reply,
           postBy: vm.getUser.email,
@@ -97,8 +97,8 @@ export default {
     getCommentsLength() {
       let vm = this;
       if (vm.replyLen > 0) return vm.replyLen;
-      vm.replyLen = vm.card.comments.length;
-      vm.card.comments.forEach(element => {
+      vm.replyLen = vm.card.discuss.length;
+      vm.card.discuss.forEach(element => {
         if (element.data.isDeleted) vm.replyLen--;
       });
       if (vm.replyLen == null) vm.replyLen = 0;
