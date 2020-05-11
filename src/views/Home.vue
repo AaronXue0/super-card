@@ -1,6 +1,7 @@
 <template>
   <v-app class="home">
-    <mobile />
+    <mobile class="hidden-md-and-up" />
+    <desktop class="hidden-sm-and-down" />
   </v-app>
 </template>
 

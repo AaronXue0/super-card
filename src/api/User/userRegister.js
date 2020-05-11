@@ -34,6 +34,7 @@ export function userRegister() {
       }
     })
     .catch(function(error) {
+      console.log(error);
       return error;
     })
     .finally(function() {
