@@ -36,7 +36,7 @@
         處理完畢
       </v-tab>
       <v-tab href="#tab-5" v-if="login">
-        我的文章
+        我的收藏
       </v-tab>
       <v-tabs-items v-model="tab">
         <v-tab-item value="tab-1">

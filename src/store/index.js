@@ -15,7 +15,8 @@ export default new Vuex.Store({
     error: null,
     login: false,
     cards: null,
-    isAdmin: false
+    isAdmin: false,
+    loading: false
   },
   mutations: {
     setUser(state, payload) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     setNTUT(state, val) {
       state.isntut = val;
+    },
+    setLoading(state, val) {
+      state.loading = val;
     }
   },
   actions: {

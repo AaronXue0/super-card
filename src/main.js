@@ -17,9 +17,12 @@ new Vue({
   vuetify,
   render: h => h(App),
   created() {
+    store.commit("setLoading", true);
     firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         store.dispatch("autoSignIn", firebaseUser);
+      } else {
+        store.commit("setLoading", false);
       }
     });
   }

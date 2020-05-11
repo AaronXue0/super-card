@@ -2,6 +2,23 @@
   <v-app-bar color="white" app fixed elevation="0">
     <v-app-bar-nav-icon color="black" @click="openDrawer"> </v-app-bar-nav-icon>
     <v-spacer></v-spacer>
+    <v-dialog
+      v-model="getLoading"
+      persistent
+      content
+      content-class="centered-dialog"
+    >
+      <v-container fill-height>
+        <v-row justify="center">
+          <v-progress-circular
+            indeterminate
+            :size="70"
+            :width="7"
+            color="primary"
+          ></v-progress-circular>
+        </v-row>
+      </v-container>
+    </v-dialog>
     <span class="noto-font" v-if="getUser">{{ getUser.displayName }}</span>
     <span class="noto-font" v-else>Sign In</span>
     <v-btn icon color="white" @click="Login()">
@@ -19,7 +36,8 @@ import logout from "@/components/Appbar/logout.vue";
 export default {
   data() {
     return {
-      dialog: false
+      dialog: false,
+      loading: false
     };
   },
   methods: {
@@ -45,8 +63,12 @@ export default {
   computed: {
     getUser() {
       return this.$store.state.user;
+    },
+    getLoading() {
+      return this.$store.state.loading;
     }
-  }
+  },
+  mounted() {}
 };
 </script>
 
@@ -59,5 +81,16 @@ export default {
 .custom-starry-icon-left {
   position: relative;
   transform: rotate(45deg);
+}
+</style>
+
+<style scoped>
+.dialog.centered-dialog,
+.v-dialog.centered-dialog {
+  background: #282c2dad;
+  box-shadow: none;
+  border-radius: 6px;
+  width: auto;
+  color: whitesmoke;
 }
 </style>

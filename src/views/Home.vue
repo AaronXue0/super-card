@@ -36,6 +36,6 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 .home {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif, "微軟雅黑";
 }
 </style>

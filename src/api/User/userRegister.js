@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import store from "../../store";
 
 export function userRegister() {
   let db = firebase.firestore();
@@ -34,6 +35,8 @@ export function userRegister() {
     })
     .catch(function(error) {
       return error;
-      //   console.log("Error getting document:", error);
+    })
+    .finally(function() {
+      store.commit("setLoading", false);
     });
 }
