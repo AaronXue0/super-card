@@ -24,22 +24,17 @@ export async function likeCard(likes, card, user) {
       });
     store.dispatch("setCardsAction");
   }
-  return db
-    .collection("issues")
-    .doc(card.id)
-    .get()
-    .then(doc => {
-      return doc.data().likes;
-    });
+  // return db
+  //   .collection("issues")
+  //   .doc(card.id)
+  //   .get()
+  //   .then(doc => {
+  //     return doc.data().likes;
+  //   });
 }
 
 function detectLiked(card, id) {
   let liked = false;
-  Object.keys(card.data).forEach(element => {
-    if (element === id) {
-      liked = true;
-      return liked;
-    }
-  });
+  if (card.data[id]) liked = true;
   return liked;
 }

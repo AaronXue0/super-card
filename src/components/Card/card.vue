@@ -15,7 +15,7 @@
       </v-card-text>
       <v-card-actions class="cardContent">
         <v-btn icon @click="clickLike" color="priCard">
-          <v-icon v-if="!getLiked" color="white">{{ iconDefault }}</v-icon>
+          <v-icon v-if="!clicked" color="white">{{ iconDefault }}</v-icon>
           <v-icon v-else color="primary">{{ iconSupport }}</v-icon>
         </v-btn>
         <span>{{ card.data.likes }}</span>
@@ -108,30 +108,20 @@ export default {
       if (vm.getUser) {
         vm.likedDetect();
         vm.clicked = !vm.clicked;
-        if (vm.clicked)
-          vm.card.data.likes = await likeCard(
-            1,
-            vm.card,
-            this.$store.state.user
-          );
-        else
-          vm.card.data.likes = await likeCard(
-            -1,
-            vm.card,
-            this.$store.state.user
-          );
+        if (vm.clicked) {
+          likeCard(1, vm.card, this.$store.state.user);
+          vm.card.data.likes++;
+        } else {
+          likeCard(-1, vm.card, this.$store.state.user);
+          vm.card.data.likes--;
+        }
       }
     },
     likedDetect() {
       let vm = this;
       let id = vm.$store.state.user.uid;
-      let obj = Object.keys(vm.card.data);
       vm.clicked = false;
-      obj.forEach(element => {
-        if (element === id) {
-          vm.clicked = true;
-        }
-      });
+      if (vm.card.data[id]) vm.clicked = true;
     },
     cancelDialog() {
       let vm = this;
@@ -152,9 +142,6 @@ export default {
     },
     isOwer() {
       return this.getUser.email == this.cardInfo.data.postBy;
-    },
-    getLiked() {
-      return this.card.data.likes;
     }
   },
   mounted() {

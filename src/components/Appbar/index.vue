@@ -7,6 +7,7 @@
       persistent
       content
       content-class="centered-dialog"
+      fullscreen
     >
       <v-container fill-height>
         <v-row justify="center">

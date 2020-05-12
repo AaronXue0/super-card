@@ -1,27 +1,5 @@
 <template>
   <v-app class="home">
-    <v-row justify="center">
-      <v-col cols="12" md="5">
-        <v-card color="primary" dark tile elevation="0" max-width="1000">
-          <v-card-title>學權超人筆記本</v-card-title>
-          <v-card-text class="white black--text">
-            <br />
-            <span>
-              # 發文規則同北科全體版
-              <hr />
-              1. 使用北科信箱登入
-              <hr />
-              2.
-              提出自己遇到且希望能得到改善的問題描述，不妨提出解決的方法讓學校知道。
-              <hr />
-              3.
-              喜歡或是你也有困擾的問題可以點個愛心，越多關注就能讓學校越快處理
-            </span>
-          </v-card-text>
-          <v-card color="primary" dark elevation="0" height="3"></v-card>
-        </v-card>
-      </v-col>
-    </v-row>
     <v-tabs background-color="white" v-model="tab" show-arrows>
       <v-tab href="#tab-1">
         討論版

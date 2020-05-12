@@ -3,8 +3,8 @@
     v-model="drawerState"
     width="100%"
     fixed
-    temporary
     class="primary"
+    temporary
   >
     <v-btn icon fab color="black" @click="closeDrawer" fixed large>
       <v-icon color="white">mdi-close</v-icon>
